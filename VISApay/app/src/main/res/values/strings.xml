@@ -79,4 +79,7 @@
     <string name="launch_map_picker_with_pois" translatable="false">LAUNCH MAP WITH POIS</string>
     <string name="launch_map_picker_with_style" translatable="false">LAUNCH MAP WITH STYLE</string>
 
+    <string name="rationale_camera">This app needs access to your camera so you can take pictures.</string>
+    <string name="rationale_external">This app needs access to your external storage.</string>
+
 </resources>
