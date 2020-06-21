@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="bg_bubble_self">#62caa6</color>
+    <color name="bg_bubble_watbot">#ecf0f1</color>
+
+    <color name="primary">#f4ad14</color>
+    <color name="primary_dark">#159c45</color>
+    <color name="primary_darker">#19783b</color>
+    <color name="accent">#FFFFFF</color>
+
+
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+
+    <color name="proceed_disable">#DEDEDE</color>
+    <color name="proceed_enable">#72D63A</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="jet">#222222</color>
+    <color name="oil">#333333</color>
+    <color name="monsoon">#777777</color>
+    <color name="jumbo">#888888</color>
+    <color name="selected_item_color">#30d1d5</color>
+
+    <color name="aluminum">#999999</color>
+    <color name="base">#AAAAAA</color>
+    <color name="guillotine_background">#444153</color>
+    <color name="guillotine_background_dark">#383547</color>
+    <color name="iron">#CCCCCC</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_300">#E0E0E0</color>
+    <color name="grey_500">#9E9E9E</color>
+
+    <color name="first">#270d36</color>
+    <color name="second">#4e1741</color>
+    <color name="third">#74204d</color>
+    <color name="fourth">#9d2a58</color>
+
+    <color name="dark">#0f0f0f</color>
+    <color name="grey">#151616</color>
+    <color name="red">#f00</color>
+
+    <array name="rainbow">
+
+        <item>@color/first</item>
+        <item>@color/second</item>
+        <item>@color/third</item>
+        <item>@color/fourth</item>
+
+    </array>
+
+    <color name="circular_textview_background">#FF0000</color>
+    <color name="color_url">#2246e7</color>
+    <color name="place_autocomplete_prediction_primary_text_highlight">#757575</color>
+    <color name="cast_libraries_material_featurehighlight_text_header_color">#FFFFFFFF</color>
+    <color name="colourCall">#039233</color>
+
+    <color name="leku_app_blue">#3DA8E1</color>
+    <color name="leku_app_strong_blue">#053B58</color>
 </resources>
