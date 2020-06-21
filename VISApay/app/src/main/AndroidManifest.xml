@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.android.visapay">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/payment"
@@ -9,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Auth.SignupActivity"></activity>
+        <activity android:name=".QRCodeActivity"></activity>
+        <activity android:name=".Auth.SignupActivity" />
         <activity android:name=".Auth.PhoneAuthActivity" />
         <activity android:name=".Auth.PasswordlessActivity" />
         <activity android:name=".Auth.LoginActivity" />
