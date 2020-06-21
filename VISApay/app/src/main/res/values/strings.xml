@@ -1,3 +1,82 @@
 <resources>
     <string name="app_name">VISA pay</string>
+    <string name="loading">Loading…</string>
+    <string name="signed_in">Signed In</string>
+    <string name="signed_out">Signed Out</string>
+    <string name="desc_firebase_lockup">Firebase logo and name</string>
+    <string name="firebase_status_fmt">Firebase User: %s</string>
+    <string name="status_code_sent">Code Sent</string>
+    <string name="status_verification_failed">Verification failed</string>
+    <string name="status_verification_succeeded">Verification succeeded</string>
+    <string name="status_sign_in_failed">Sign-in failed</string>
+    <string name="instant_validation">instant validation</string>
+    <string name="phone_title_text">Phone Number</string>
+    <string name="hint_phone_number">Phone Number</string>
+    <string name="hint_verification_code">Verification Code</string>
+    <string name="quotedesc">Welcome! Where should we deliver to?</string>
+
+    <string name="start_phone_auth">Start</string>
+    <string name="verify_phone_auth">Verify</string>
+    <string name="resend_phone_auth">Resend</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="passwordless_title_text">Passwordless Sign In</string>
+    <string name="passwordless_status_fmt">Passwordless Login</string>
+    <string name="hint_email">Email</string>
+    <string name="send_link">Send Link</string>
+    <string name="sign_in">Sign In</string>
+    <string name="status_email_not_sent">Email not send</string>
+    <string name="status_email_sent">Email send</string>
+    <string name="status_link_found">Link Not Found</string>
+    <string name="request">Request Parts</string>
+    <string name="posI">Form for initial position</string>
+    <string name="posF">Form for final position</string>
+    <string name="plant_disease_detection">Plant Disease Detection</string>
+    <string name="current">Get Current Location</string>
+    <string name="home_remedies">Home Remedies</string>
+    <string name="input_text">Looking for…</string>
+    <string name="news_water">News</string>
+    <string name="input">Fill Your Info</string>
+    <string name="is_safe">Is Place Safe</string>
+    <string name="voice">Emotion Sensor</string>
+    <string name="news">Relaxing Songs</string>
+    <string name="weather">Chatbot</string>
+    <string name="forum">Games</string>
+    <string name="buy">Mind Refreshing Memes</string>
+    <string name="requests">Requests</string>
+    <string name="arrival">Arrival Reports</string>
+    <string name="departure">Departure Reports</string>
+    <string name="basic">All Workers Info</string>
+    <string name="login">Login Report</string>
+    <string name="login_info">Login information</string>
+    <string name="city">City Identification</string>
+
+    <string name="camera_button_text">ADD NEW EVENT</string>
+    <string name="sign_in_prompt">Sign In to begin</string>
+    <string name="take_photo_prompt">ADD A NEW EVENT</string>
+    <string name="download">SAVE</string>
+    <string name="sign_in_anonymously">Sign In</string>
+    <string name="rationale_storage">This sample reads images from your camera to demonstrate uploading.</string>
+    <string name="label_link">Link to Uploaded File</string>
+    <string name="label_download">Download File</string>
+    <string name="log_out">Log out</string>
+    <string name="success">Success</string>
+    <string name="upload">Upload Image</string>
+    <string name="btn_send_token">Send Token</string>
+    <string name="btn_send_tokens">Send Tokens</string>
+    <string name="btn_send_topic">Send Topic</string>
+    <string name="btn_show_token">Show Token</string>
+    <string name="btn_subscribe_news">Subscribe (News)</string>
+    <string name="btn_unsubscribe_news">Unsubscribe (News)</string>
+    <string name="notification_channel_id">default</string>
+    <string name="result">Something will happen here&#8230;</string>
+    <string name="subscribed">Subscribed to news topic</string>
+    <string name="unsubscribed">Unsubscribed from news topic</string>
+    <string name="notify">Send Notification</string>
+    <string name="uploaded">Uploaded Images</string>
+
+    <string name="google_maps_key">AIzaSyDxRfxqFdgUlccCFu65mDq2C9Ao33G9q4A</string>
+    <string name="launch_map_picker" translatable="false">LAUNCH MAP LOCATION PICKER ACTIVITY</string>
+    <string name="launch_map_picker_with_pois" translatable="false">LAUNCH MAP WITH POIS</string>
+    <string name="launch_map_picker_with_style" translatable="false">LAUNCH MAP WITH STYLE</string>
+
 </resources>
