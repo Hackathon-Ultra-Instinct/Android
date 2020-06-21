@@ -21,7 +21,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 
-import com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.common.GraphicOverlay;
+
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
 
 /**

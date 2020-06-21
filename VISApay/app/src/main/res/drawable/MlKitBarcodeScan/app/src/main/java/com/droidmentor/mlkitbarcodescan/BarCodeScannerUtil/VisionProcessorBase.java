@@ -18,10 +18,6 @@ import android.support.annotation.GuardedBy;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.common.BitmapUtils;
-import com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.common.FrameMetadata;
-import com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.common.GraphicOverlay;
-import com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.common.VisionImageProcessor;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.ml.common.FirebaseMLException;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
@@ -58,7 +54,7 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
     }
 
     @Override
-    public void process(ByteBuffer data, FrameMetadata frameMetadata, com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.common.GraphicOverlay graphicOverlay) throws FirebaseMLException {
+    public void process(ByteBuffer data, FrameMetadata frameMetadata, GraphicOverlay graphicOverlay) throws FirebaseMLException {
         latestImage = data;
         latestImageMetaData = frameMetadata;
         if (processingImage == null && processingMetaData == null) {
@@ -67,7 +63,7 @@ public abstract class VisionProcessorBase<T> implements VisionImageProcessor {
     }
 
     @Override
-    public void process(Bitmap bitmap, com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.common.GraphicOverlay graphicOverlay) {
+    public void process(Bitmap bitmap, GraphicOverlay graphicOverlay) {
         detectInVisionImage(null /* bitmap */, FirebaseVisionImage.fromBitmap(bitmap), null,
                 graphicOverlay);
     }
