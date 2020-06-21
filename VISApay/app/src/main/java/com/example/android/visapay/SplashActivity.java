@@ -8,6 +8,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.eftimoff.androipathview.PathView;
+import com.example.android.visapay.Auth.LoginActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -29,8 +30,8 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-//                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
-//                finish();
+                startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                finish();
             }
         }, 3000);
 
