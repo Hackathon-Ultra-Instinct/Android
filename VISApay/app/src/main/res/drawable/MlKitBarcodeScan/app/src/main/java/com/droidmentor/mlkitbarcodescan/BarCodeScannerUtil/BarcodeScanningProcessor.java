@@ -5,9 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.common.CameraImageGraphic;
-import com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.common.FrameMetadata;
-import com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.common.GraphicOverlay;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;

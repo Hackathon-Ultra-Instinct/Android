@@ -3,9 +3,9 @@
     package="com.example.android.visapay">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -14,7 +14,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".QRCodeActivity"></activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
+
+        <activity android:name=".ScanningActivity"></activity>
+        <activity android:name=".StaticObjectDetectionActivity" />
+        <activity android:name=".LiveObjectDetectionActivity" />
+        <activity android:name=".LiveBarcodeScanningActivity" />
+        <activity android:name=".QRCodeActivity" />
         <activity android:name=".Auth.SignupActivity" />
         <activity android:name=".Auth.PhoneAuthActivity" />
         <activity android:name=".Auth.PasswordlessActivity" />
@@ -25,6 +34,7 @@
         <activity android:name=".Auth.AnonymousActivity" />
         <activity android:name=".ListViewBarChartActivity" />
         <activity android:name=".SplashActivity" />
+        <activity android:name=".settings.SettingsActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".BoardingActivity">
             <intent-filter>

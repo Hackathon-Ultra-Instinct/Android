@@ -14,16 +14,6 @@ import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.BarcodeScanningProcessor;
-import com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.BarcodeScanningProcessor.BarcodeResultListener;
-import com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.OverlayView;
-import com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.common.CameraSource;
-import com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.common.CameraSourcePreview;
-import com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.common.FrameMetadata;
-import com.droidmentor.mlkitbarcodescan.BarCodeScannerUtil.common.GraphicOverlay;
-import com.droidmentor.mlkitbarcodescan.LocalData.ContactDetail;
-import com.droidmentor.mlkitbarcodescan.LocalData.DBHandler;
-import com.droidmentor.mlkitbarcodescan.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.ml.vision.FirebaseVision;
