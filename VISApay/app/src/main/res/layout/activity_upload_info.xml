@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/holo_green_light"
+    >
+    <TextView
+        android:layout_marginVertical="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter Details"
+        android:paddingHorizontal="90dp"
+        android:textSize="30sp"
+        android:textColor="#fff"
+        />
+
+    <LinearLayout
+        android:paddingVertical="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:paddingTop="8dp"
+            android:layout_gravity="center"
+            android:text="Name"
+            />
+        <EditText
+            android:id="@+id/et_Name"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:hint="Name"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:paddingVertical="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:paddingTop="8dp"
+            android:layout_gravity="center"
+            android:text="Phone Number"
+            />
+        <EditText
+            android:id="@+id/et_phone"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:hint="Phone number"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingVertical="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        >
+
+        <TextView
+            android:id="@+id/tvCard"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:paddingTop="8dp"
+            android:layout_gravity="center"
+            android:text="Card Number"
+            />
+        <EditText
+            android:id="@+id/et_card"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:hint="Card Number"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingVertical="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_city_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:paddingTop="8dp"
+            android:layout_gravity="center"
+            android:text="City Name"
+            />
+        <EditText
+            android:id="@+id/et_city_name"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:hint="City Name"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:paddingVertical="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_pincode"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:paddingTop="8dp"
+            android:layout_gravity="center"
+            android:text="Pincode"
+            />
+        <EditText
+            android:id="@+id/et_pin_code"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:hint="Enter pin code"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="8dp"
+        android:text="Request"
+        android:textColor="@color/white" />
+
+</LinearLayout>
