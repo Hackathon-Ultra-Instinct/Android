@@ -19,6 +19,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.android.visapay.MenuscreenActivity;
 import com.example.android.visapay.R;
 import com.example.android.visapay.uploadUserInfo.UploadInfoActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -121,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser currentUser){
         Toast.makeText(this, "Welcome " + currentUser.getDisplayName(), Toast.LENGTH_SHORT).show();
-//        startActivity(new Intent(getBaseContext(),MenuscreenActivity.class));
+        startActivity(new Intent(getBaseContext(), MenuscreenActivity.class));
 
         finish();
     }
@@ -185,6 +186,7 @@ public class LoginActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             return true;
         }
+
         if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(WRITE_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
             return true;
         }
