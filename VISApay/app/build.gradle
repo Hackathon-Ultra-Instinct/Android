@@ -1,5 +1,9 @@
+import com.google.gms.googleservices.GoogleServicesPlugin
+
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
+
+GoogleServicesPlugin.config.disableVersionCheck = true
 
 android {
     compileSdkVersion 29
@@ -53,6 +57,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-ml-vision:24.0.2'
 
 
+    implementation 'com.google.firebase:firebase-database:11.8.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
@@ -60,4 +65,3 @@ dependencies {
 
 }
 apply plugin: 'com.google.gms.google-services'
-

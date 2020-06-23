@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
+import android.annotation.TargetApi;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,11 +20,20 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.android.visapay.R;
+import com.example.android.visapay.uploadUserInfo.UploadInfoActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+
+import static android.Manifest.permission.READ_CONTACTS;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+import static android.Manifest.permission.WRITE_CONTACTS;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
@@ -31,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
     private SwitchCompat adminSwitch;
     public int  switchNumber = 0;
 
+    private static final int REQUEST_READ_CONTACTS = 0;
 
     EditText _emailText;
     EditText _passwordText;
@@ -57,6 +70,9 @@ public class LoginActivity extends AppCompatActivity {
         _loginButton = findViewById(R.id.btn_login);
         _signupLink = findViewById(R.id.link_signup);
         btnOtherAuth  = findViewById(R.id.btnOtherAuth);
+
+        mayRequestContacts();
+
 
         btnOtherAuth.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,10 +121,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser currentUser){
         Toast.makeText(this, "Welcome " + currentUser.getDisplayName(), Toast.LENGTH_SHORT).show();
-//        if(switchNumber == 1)
-//            startActivity(new Intent(getBaseContext(),MenuscreenActivity.class));
-//        else
-//            startActivity(new Intent(getBaseContext(),MenuscreenActivity2.class));
+//        startActivity(new Intent(getBaseContext(),MenuscreenActivity.class));
 
         finish();
     }
@@ -166,6 +179,17 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
+    }
+
+    private boolean mayRequestContacts() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return true;
+        }
+        if (checkSelfPermission(READ_CONTACTS) == PackageManager.PERMISSION_GRANTED && checkSelfPermission(WRITE_CONTACTS) == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        }
+        requestPermissions(new String[]{READ_CONTACTS, WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, REQUEST_READ_CONTACTS);
+        return false;
     }
 
 
