@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.android.visapay.Adapters.MenuAdapter;
 import com.example.android.visapay.Auth.LoginActivity;
 import com.example.android.visapay.Models.Item;
+import com.example.android.visapay.uploadUserInfo.UploadInfoActivity;
 import com.github.tbouron.shakedetector.library.ShakeDetector;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -67,6 +68,9 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
 
 //        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Login History");
         firebaseUser = firebaseAuth.getCurrentUser();
+        checkReadPermissionPermission();
+        checkInternetPermission();
+        checkPhonePermission();
 
 
 //        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Login").child(firebaseUser.getUid());
@@ -258,9 +262,10 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
 //            startActivity(new Intent(getBaseContext(), MyLocationUsingHelper.class));
 //        } else if (item.getText().equals("Fill Your Info")) {
 //            startActivity(new Intent(getBaseContext(), ReportLocationActivity.class));
-//        }else if (item.getText().equals("Upload Image")) {
-//            startActivity(new Intent(getBaseContext(), ImageUploadActivity.class));
-//        }
+//
+        if (item.getText().equals("Upload Image")) {
+            startActivity(new Intent(getBaseContext(), UploadInfoActivity.class));
+        }
 //        else {
             Toast.makeText(this, "Error !", Toast.LENGTH_SHORT).show();
 //        }
@@ -300,6 +305,18 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 123);
+            }
+            return false;
+
+        } else
+            return true;
+    }
+
+    public boolean checkInternetPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.INTERNET) != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.INTERNET)) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, 124);
             }
             return false;
 
