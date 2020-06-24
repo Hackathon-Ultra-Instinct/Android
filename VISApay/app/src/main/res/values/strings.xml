@@ -151,5 +151,18 @@
     <string name="pref_title_delay_loading_barcode_result">Delay loading barcode result</string>
     <string name="pref_summary_delay_loading_barcode_result">Will show the loading spinner for 2s</string>
 
+    <string name="enableSession">Enable / Disable Session</string>
+    <string name="parking">Parking Details</string>
+    <string name="wallet">Your Wallet</string>
+    <string name="merchants">Nearby Merchants</string>
+    <string name="numberplate">Scan Number Plate</string>
+    <string name="shop">Shop</string>
+    <string name="transaction">Transaction History</string>
+    <string name="crowdDetails">Crowd Details</string>
+    <string name="verify">Verify Cart</string>
+    <string name="sale">Sale</string>
+    <string name="changeB">Change Barcode</string>
+    <string name="changeQ">Change QR code</string>
+
 
 </resources>

@@ -17,12 +17,11 @@ public class BoardingActivity extends AhoyOnboarderActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        AhoyOnboarderCard ahoyOnboarderCard1 = new AhoyOnboarderCard("Coordination", "We seek to coordinate you with the admin 24 x 7. With our realtime database all your queries are processed instanta0neously !", R.drawable.money);
-        AhoyOnboarderCard ahoyOnboarderCard2 = new AhoyOnboarderCard("Location monitoring", "Be it any city or village ! We keep your location updated along with your longitude and latitude", R.drawable.number);
-        AhoyOnboarderCard ahoyOnboarderCard3 = new AhoyOnboarderCard("Request Parts", "Fell short of any equipment ? Now you can request part and ping directly to the admin", R.drawable.location);
-        AhoyOnboarderCard ahoyOnboarderCard4 = new AhoyOnboarderCard("Report Generation", "All reports at disposal ! With our realtime database get your report in no time", R.drawable.scan);
-        AhoyOnboarderCard ahoyOnboarderCard5 = new AhoyOnboarderCard("Report Generation", "All reports at disposal ! With our realtime database get your report in no time", R.drawable.car);
-
+        AhoyOnboarderCard ahoyOnboarderCard1 = new AhoyOnboarderCard("Payments Simplified", "We aim to serve simplified and secured payments experience.Empowered by VISA APIs the app will make payments much easier", R.drawable.money);
+        AhoyOnboarderCard ahoyOnboarderCard2 = new AhoyOnboarderCard("Vehicle Number Plate", "Now store your money in your vehicle number plate! It's no less than your account number!", R.drawable.number);
+        AhoyOnboarderCard ahoyOnboarderCard3 = new AhoyOnboarderCard("Know the locations", "Scan the nearest available merchants accepting visa payments", R.drawable.location);
+        AhoyOnboarderCard ahoyOnboarderCard4 = new AhoyOnboarderCard("Bar code and QR code scanning", "Purchase items and pay bills without any human contact.", R.drawable.scan);
+        AhoyOnboarderCard ahoyOnboarderCard5 = new AhoyOnboarderCard("Smart Pay for parking slots", "Paying for parking slots made really convenient", R.drawable.car);
 
 
         ahoyOnboarderCard1.setTitleColor(android.R.color.black);

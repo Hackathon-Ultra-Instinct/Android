@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,6 +25,7 @@ import com.example.android.visapay.Auth.LoginActivity;
 import com.example.android.visapay.Models.Item;
 import com.example.android.visapay.uploadUserInfo.UploadInfoActivity;
 import com.github.tbouron.shakedetector.library.ShakeDetector;
+import com.google.android.gms.vision.barcode.Barcode;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -33,7 +35,9 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MenuscreenActivity extends AppCompatActivity implements View.OnClickListener, MenuAdapter.ItemListener, ShakeDetector.OnShakeListener {
+
+
+public class MenuscreenActivity2 extends AppCompatActivity implements View.OnClickListener, MenuAdapter.ItemListener, ShakeDetector.OnShakeListener {
 
     private static final long RIPPLE_DURATION = 250;
     Button tvSwitch;
@@ -59,20 +63,19 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menuscreen);
+        setContentView(R.layout.activity_menuscreen2);
+
+        Toast.makeText(this, "Welcome Admin", Toast.LENGTH_SHORT).show();
 
         mAuth = FirebaseAuth.getInstance();
         mCurrentUser = mAuth.getCurrentUser();
         firebaseAuth = FirebaseAuth.getInstance();
-
-        Toast.makeText(this, "Welcome User", Toast.LENGTH_SHORT).show();
 
 //        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Login History");
         firebaseUser = firebaseAuth.getCurrentUser();
         checkReadPermissionPermission();
         checkInternetPermission();
         checkPhonePermission();
-        checkCameraPermssion();
 
 
 //        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Login").child(firebaseUser.getUid());
@@ -96,15 +99,11 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
         mAuth = FirebaseAuth.getInstance();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         arrayList = new ArrayList<>();
-        arrayList.add(new Item(getString(R.string.enableSession), R.drawable.qr_code, "#ffffff"));
-        arrayList.add(new Item(getString(R.string.parking), R.drawable.parking, "#ffffff"));
-        arrayList.add(new Item(getString(R.string.wallet), R.drawable.wallet, "#ffffff"));
-        arrayList.add(new Item(getString(R.string.merchants), R.drawable.nearby_merchants, "#ffffff"));
-        arrayList.add(new Item(getString(R.string.input), R.drawable.form, "#ffffff"));
-        arrayList.add(new Item(getString(R.string.numberplate),R.drawable.number,"#ffffff"));
-        arrayList.add(new Item(getString(R.string.shop),R.drawable.shopping,"#ffffff"));
-        arrayList.add(new Item(getString(R.string.transaction),R.drawable.transaction_history,"#ffffff"));
-
+        arrayList.add(new Item(getString(R.string.crowdDetails), R.drawable.crowd_details, "#ffffff"));
+        arrayList.add(new Item(getString(R.string.verify), R.drawable.verify, "#ffffff"));
+        arrayList.add(new Item(getString(R.string.sale), R.drawable.sale, "#ffffff"));
+        arrayList.add(new Item(getString(R.string.changeB), R.drawable.barcode, "#ffffff"));
+        arrayList.add(new Item(getString(R.string.changeQ), R.drawable.qr_code, "#ffffff"));
 
         MenuAdapter menuAdapter = new MenuAdapter(this, arrayList, this);
         recyclerView.setAdapter(menuAdapter);
@@ -165,9 +164,45 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
         return 0;
     }
 
+    public static int getImageResource() {
+//        if (imageResourceIndex >= imageResources.length) imageResourceIndex = 0;
+//        return imageResources[imageResourceIndex++];
+        return 0;
+    }
+
     public void start(int pos) {
         //Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
 //        Intent in = new Intent(this, MainActivity.class);
+//        startActivity(in);
+    }
+
+    public void stock(int pos) {
+        // Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
+//        Intent in = new Intent( this, ChatActivity.class);
+//        startActivity(in);
+    }
+
+    public void sales(int pos) {
+        //Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
+//        Intent in = new Intent( this, Spacewar.class);
+//        startActivity(in);
+    }
+
+    public void buy(int pos) {
+        // Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
+//        Intent in = new Intent( this, MemeActivity.class);
+//        startActivity(in);
+    }
+
+    public void anonymous(int pos) {
+        // Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
+//        Intent in = new Intent(this, AnonymousChat.class);
+//        startActivity(in);
+    }
+
+    public void ordering(int pos) {
+        //Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
+//        Intent in = new Intent( this, MusicActivity.class);
 //        startActivity(in);
     }
 
@@ -221,22 +256,18 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onItemClick(Item item) {
 
-        if (item.getText().equals("Enable / Disable Session"))
-            startActivity(new Intent(getBaseContext(), QRCodeActivity.class));
-        else if (item.getText().equals("Parking Details"))
-            startActivity(new Intent(getBaseContext(), ParkingActivity.class));
-        else if (item.getText().equals("Your Wallet"))
-            startActivity(new Intent(getBaseContext(), WalletActivity.class));
-        else if (item.getText().equals("Nearby Merchants"))
-            startActivity(new Intent(getBaseContext(), NearbyMerchantsActivity.class));
-        else if (item.getText().equals("Fill Your Info"))
-            startActivity(new Intent(getBaseContext(), UploadInfoActivity.class));
-        else if (item.getText().equals("Scan Number Plate"))
-            startActivity(new Intent(getBaseContext(), NumberPlateActivity.class));
-        else if (item.getText().equals("Shop"))
-            startActivity(new Intent(getBaseContext(), ShopActivity.class));
-        else if (item.getText().equals("Transaction History"))
-            startActivity(new Intent(getBaseContext(), TransactionHistoryActivity.class));
+         if (item.getText().equals("Crowd Details"))
+            startActivity(new Intent(getBaseContext(), CrowdDetailsActivity.class));
+         else if (item.getText().equals("Verify Cart"))
+            startActivity(new Intent(getBaseContext(), VerifyCartActivity.class));
+         else if (item.getText().equals("Sale"))
+            startActivity(new Intent(getBaseContext(), SaleActivity.class));
+         else if (item.getText().equals("Change Barcode"))
+            startActivity(new Intent(getBaseContext(), ChangeBarcodeActivity.class));
+         else if (item.getText().equals("Change QR code"))
+            startActivity(new Intent(getBaseContext(), ChangeQRcodeActivity.class));
+         else if (item.getText().equals("Parking"))
+             startActivity(new Intent(getBaseContext(), ParkingChargesActivity.class));
 
     }
 
@@ -286,18 +317,6 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.INTERNET)) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, 124);
-            }
-            return false;
-
-        } else
-            return true;
-    }
-
-    public boolean checkCameraPermssion() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 125);
             }
             return false;
 
