@@ -104,6 +104,8 @@ public class MenuscreenActivity2 extends AppCompatActivity implements View.OnCli
         arrayList.add(new Item(getString(R.string.sale), R.drawable.sale, "#ffffff"));
         arrayList.add(new Item(getString(R.string.changeB), R.drawable.barcode, "#ffffff"));
         arrayList.add(new Item(getString(R.string.changeQ), R.drawable.qr_code, "#ffffff"));
+        arrayList.add(new Item(getString(R.string.parking2), R.drawable.parking, "#ffffff"));
+
 
         MenuAdapter menuAdapter = new MenuAdapter(this, arrayList, this);
         recyclerView.setAdapter(menuAdapter);
