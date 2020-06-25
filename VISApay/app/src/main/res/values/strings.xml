@@ -151,5 +151,30 @@
     <string name="pref_title_delay_loading_barcode_result">Delay loading barcode result</string>
     <string name="pref_summary_delay_loading_barcode_result">Will show the loading spinner for 2s</string>
 
+    <string name="enableSession">Enable / Disable Session</string>
+    <string name="parking">Parking Details</string>
+    <string name="wallet">Your Wallet</string>
+    <string name="merchants">Nearby Merchants</string>
+    <string name="numberplate">Scan Number Plate</string>
+    <string name="shop">Shop</string>
+    <string name="transaction">Transaction History</string>
+    <string name="crowdDetails">Crowd Details</string>
+    <string name="verify">Verify Cart</string>
+    <string name="sale">Sale</string>
+    <string name="changeB">Change Barcode</string>
+    <string name="changeQ">Change QR code</string>
+
+
+    <string name="snack_bar_text_item_removed">1 item removed</string>
+    <string name="snack_bar_text_group_item_removed">1 group item removed</string>
+    <string name="snack_bar_text_child_item_removed">1 child item removed</string>
+    <string name="snack_bar_text_button_clicked">Button clicked! (position = %1$d)</string>
+    <string name="snack_bar_action_undo">UNDO</string>
+
+    <string name="dialog_message_item_pinned">Item pinned! (position = %1$d)</string>
+    <string name="dialog_message_group_item_pinned">Group item pinned! (group = %1$d)</string>
+    <string name="dialog_message_child_item_pinned">Child item pinned! (group = %1$d, child = %2$d)</string>
+    <string name="menu_item_about">About</string>
+
 
 </resources>

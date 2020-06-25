@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -17,7 +18,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MenuscreenActivity"></activity>
+        <activity android:name=".ExpandableDraggableSwipeableExampleActivity"></activity>
+        <activity android:name=".ParkingChargesActivity" />
+        <activity android:name=".ChangeQRcodeActivity" />
+        <activity android:name=".ChangeBarcodeActivity" />
+        <activity android:name=".SaleActivity" />
+        <activity android:name=".VerifyCartActivity" />
+        <activity android:name=".CrowdDetailsActivity" />
+        <activity android:name=".TransactionHistoryActivity" />
+        <activity android:name=".ShopActivity" />
+        <activity android:name=".NumberPlateActivity" />
+        <activity android:name=".NearbyMerchantsActivity" />
+        <activity android:name=".WalletActivity" />
+        <activity android:name=".ParkingActivity" />
+        <activity android:name=".MenuscreenActivity2" />
+        <activity android:name=".DummyActivity" />
+        <activity android:name=".MenuscreenActivity" />
         <activity android:name=".Auth.LoginActivity" />
 
         <meta-data

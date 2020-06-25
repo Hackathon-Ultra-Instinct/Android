@@ -20,6 +20,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.android.visapay.MenuscreenActivity;
+import com.example.android.visapay.MenuscreenActivity2;
 import com.example.android.visapay.R;
 import com.example.android.visapay.uploadUserInfo.UploadInfoActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -124,9 +125,12 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void updateUI(FirebaseUser currentUser){
-        Toast.makeText(this, "Welcome " + currentUser.getDisplayName(), Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(getBaseContext(), MenuscreenActivity.class));
+        if(switchNumber == 1)
+            startActivity(new Intent(getBaseContext(),MenuscreenActivity.class));
+        else
+            startActivity(new Intent(getBaseContext(), MenuscreenActivity2.class));
 
+        finish();
         finish();
     }
 

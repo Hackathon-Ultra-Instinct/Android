@@ -27,7 +27,6 @@ import com.github.tbouron.shakedetector.library.ShakeDetector;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.yalantis.guillotine.animation.GuillotineAnimation;
 
 import java.text.DateFormat;
@@ -66,11 +65,14 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
         mCurrentUser = mAuth.getCurrentUser();
         firebaseAuth = FirebaseAuth.getInstance();
 
+        Toast.makeText(this, "Welcome User", Toast.LENGTH_SHORT).show();
+
 //        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Login History");
         firebaseUser = firebaseAuth.getCurrentUser();
         checkReadPermissionPermission();
         checkInternetPermission();
         checkPhonePermission();
+        checkCameraPermssion();
 
 
 //        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Login").child(firebaseUser.getUid());
@@ -94,12 +96,15 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
         mAuth = FirebaseAuth.getInstance();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         arrayList = new ArrayList<>();
-        arrayList.add(new Item(getString(R.string.request), R.drawable.application, "#ffffff"));
-        arrayList.add(new Item(getString(R.string.posI), R.drawable.form_i, "#ffffff"));
-        arrayList.add(new Item(getString(R.string.posF), R.drawable.form_f, "#ffffff"));
-        arrayList.add(new Item(getString(R.string.current), R.drawable.logo, "#ffffff"));
+        arrayList.add(new Item(getString(R.string.enableSession), R.drawable.qr_code, "#ffffff"));
+        arrayList.add(new Item(getString(R.string.parking), R.drawable.parking, "#ffffff"));
+        arrayList.add(new Item(getString(R.string.wallet), R.drawable.wallet, "#ffffff"));
+        arrayList.add(new Item(getString(R.string.merchants), R.drawable.nearby_merchants, "#ffffff"));
         arrayList.add(new Item(getString(R.string.input), R.drawable.form, "#ffffff"));
-        arrayList.add(new Item(getString(R.string.upload),R.drawable.photo,"#ffffff"));
+        arrayList.add(new Item(getString(R.string.numberplate),R.drawable.number,"#ffffff"));
+        arrayList.add(new Item(getString(R.string.shop),R.drawable.shopping,"#ffffff"));
+        arrayList.add(new Item(getString(R.string.transaction),R.drawable.transaction_history,"#ffffff"));
+
 
         MenuAdapter menuAdapter = new MenuAdapter(this, arrayList, this);
         recyclerView.setAdapter(menuAdapter);
@@ -107,7 +112,7 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
         recyclerView.setLayoutManager(manager);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-            getSupportActionBar().setTitle("Team Tracker");
+            getSupportActionBar().setTitle("VISA Pay");
         }
 
 
@@ -160,45 +165,9 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
         return 0;
     }
 
-    public static int getImageResource() {
-//        if (imageResourceIndex >= imageResources.length) imageResourceIndex = 0;
-//        return imageResources[imageResourceIndex++];
-        return 0;
-    }
-
     public void start(int pos) {
         //Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
 //        Intent in = new Intent(this, MainActivity.class);
-//        startActivity(in);
-    }
-
-    public void stock(int pos) {
-        // Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
-//        Intent in = new Intent( this, ChatActivity.class);
-//        startActivity(in);
-    }
-
-    public void sales(int pos) {
-        //Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
-//        Intent in = new Intent( this, Spacewar.class);
-//        startActivity(in);
-    }
-
-    public void buy(int pos) {
-        // Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
-//        Intent in = new Intent( this, MemeActivity.class);
-//        startActivity(in);
-    }
-
-    public void anonymous(int pos) {
-        // Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
-//        Intent in = new Intent(this, AnonymousChat.class);
-//        startActivity(in);
-    }
-
-    public void ordering(int pos) {
-        //Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
-//        Intent in = new Intent( this, MusicActivity.class);
 //        startActivity(in);
     }
 
@@ -252,23 +221,23 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onItemClick(Item item) {
 
-//        if (item.getText().equals("Form for initial position"))  {
-//            startActivity(new Intent(getBaseContext(), FormInitialActivity.class));
-//        } else if (item.getText().equals("Request Parts")) {
-//            startActivity(new Intent(getBaseContext(), RequestActivity.class));
-//        } else if (item.getText().equals("Form for final position")) {
-//            startActivity(new Intent(getBaseContext(), FormFinalActivity.class));
-//        } else if (item.getText().equals("Get Current Location")) {
-//            startActivity(new Intent(getBaseContext(), MyLocationUsingHelper.class));
-//        } else if (item.getText().equals("Fill Your Info")) {
-//            startActivity(new Intent(getBaseContext(), ReportLocationActivity.class));
-//
-        if (item.getText().equals("Upload Image")) {
+        if (item.getText().equals("Enable / Disable Session"))
+            startActivity(new Intent(getBaseContext(), QRCodeActivity.class));
+        else if (item.getText().equals("Parking Details"))
+            startActivity(new Intent(getBaseContext(), ParkingActivity.class));
+        else if (item.getText().equals("Your Wallet"))
+            startActivity(new Intent(getBaseContext(), WalletActivity.class));
+        else if (item.getText().equals("Nearby Merchants"))
+            startActivity(new Intent(getBaseContext(), NearbyMerchantsActivity.class));
+        else if (item.getText().equals("Fill Your Info"))
             startActivity(new Intent(getBaseContext(), UploadInfoActivity.class));
-        }
-//        else {
-            Toast.makeText(this, "Error !", Toast.LENGTH_SHORT).show();
-//        }
+        else if (item.getText().equals("Scan Number Plate"))
+            startActivity(new Intent(getBaseContext(), NumberPlateActivity.class));
+        else if (item.getText().equals("Shop"))
+            startActivity(new Intent(getBaseContext(), ShopActivity.class));
+        else if (item.getText().equals("Transaction History"))
+            startActivity(new Intent(getBaseContext(), TransactionHistoryActivity.class));
+
     }
 
     @Override
@@ -317,6 +286,18 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.INTERNET)) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.INTERNET}, 124);
+            }
+            return false;
+
+        } else
+            return true;
+    }
+
+    public boolean checkCameraPermssion() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 125);
             }
             return false;
 
