@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ParkingChargesActivity"></activity>
+        <activity android:name=".ExpandableDraggableSwipeableExampleActivity"></activity>
+        <activity android:name=".ParkingChargesActivity" />
         <activity android:name=".ChangeQRcodeActivity" />
         <activity android:name=".ChangeBarcodeActivity" />
         <activity android:name=".SaleActivity" />

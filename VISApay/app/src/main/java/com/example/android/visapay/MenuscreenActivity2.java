@@ -111,7 +111,7 @@ public class MenuscreenActivity2 extends AppCompatActivity implements View.OnCli
         recyclerView.setLayoutManager(manager);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-            getSupportActionBar().setTitle("Team Tracker");
+            getSupportActionBar().setTitle("VISA Pay");
         }
 
 
