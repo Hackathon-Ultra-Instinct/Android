@@ -60,13 +60,17 @@
 
         <ImageView
             style="@style/ImageView.GuillotineItem"
-            android:src="@drawable/hospital" />
+            android:src="@drawable/hospital"
+            android:visibility="gone"
+            />
 
         <Button
             android:id="@+id/tvhosp"
             style="@style/TextView.GuillotineItem"
             android:onClick="hosp"
-            android:text="Shake to Call" />
+            android:text="Shake to Call"
+            android:visibility="gone"
+            />
     </LinearLayout>
 
     <LinearLayout
