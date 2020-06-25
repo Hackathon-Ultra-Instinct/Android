@@ -51,7 +51,7 @@
             android:layout_marginRight="40dp"
             android:gravity="center"/>
 
-        <com.example.android.visapay.common.widget.ExpandableItemIndicator
+        <com.ultrainstinct.android.visapay.common.widget.ExpandableItemIndicator
             android:id="@+id/indicator"
             android:layout_width="24dp"
             android:layout_height="24dp"
