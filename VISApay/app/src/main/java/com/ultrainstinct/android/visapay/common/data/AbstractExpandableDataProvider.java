@@ -17,6 +17,7 @@
 package com.ultrainstinct.android.visapay.common.data;
 
 public abstract class AbstractExpandableDataProvider {
+
     public static abstract class BaseData {
 
         public abstract String getText();

@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.ultrainstinct.android.visapay.Fragments;
+package com.ultrainstinct.android.visapay;
 
 import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;

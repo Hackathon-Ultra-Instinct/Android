@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.ultrainstinct.android.visapay.R;
-
 public class TransactionHistoryActivity extends AppCompatActivity {
 
     @Override
@@ -14,7 +12,7 @@ public class TransactionHistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_history);
 
-        startActivity(new Intent(this,ExpandableDraggableSwipeableExampleActivity.class));
+        startActivity(new Intent(this, ExpandableDraggableSwipeableExampleActivity.class));
         finish();
     }
 }

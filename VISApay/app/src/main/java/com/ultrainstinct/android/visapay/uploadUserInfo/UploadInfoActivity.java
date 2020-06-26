@@ -30,7 +30,6 @@ public class UploadInfoActivity extends AppCompatActivity {
     private FirebaseAuth mauth;
     private FirebaseUser mCurrentUser;
     private DatabaseReference mDatabaseUser;
-
     private ProgressDialog pd;
 
 
@@ -45,7 +44,6 @@ public class UploadInfoActivity extends AppCompatActivity {
         etCard = findViewById(R.id.et_card);
         etPhone = findViewById(R.id.et_phone);
         btnSubmit = findViewById(R.id.submit);
-
 
         FirebaseApp.initializeApp(this);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("General");;

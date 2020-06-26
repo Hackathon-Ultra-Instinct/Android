@@ -73,6 +73,7 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
         checkInternetPermission();
         checkPhonePermission();
         checkCameraPermssion();
+        checkVibratePermission();
 
 
 //        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Login").child(firebaseUser.getUid());
@@ -298,6 +299,18 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
 
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 125);
+            }
+            return false;
+
+        } else
+            return true;
+    }
+
+    public boolean checkVibratePermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.VIBRATE)) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.VIBRATE}, 125);
             }
             return false;
 

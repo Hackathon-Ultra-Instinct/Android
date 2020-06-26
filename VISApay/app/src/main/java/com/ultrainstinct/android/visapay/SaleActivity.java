@@ -11,7 +11,7 @@ public class SaleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sale);
-        startActivity(new Intent(this,ExpandableDraggableSwipeableExampleActivity.class));
+        startActivity(new Intent(this, ExpandableDraggableSwipeableExampleActivity.class));
         finish();
     }
 }

@@ -73,6 +73,7 @@ public class MenuscreenActivity2 extends AppCompatActivity implements View.OnCli
         checkReadPermissionPermission();
         checkInternetPermission();
         checkPhonePermission();
+        checkVibratePermission();
 
 
 //        mDatabaseUser = FirebaseDatabase.getInstance().getReference().child("Login").child(firebaseUser.getUid());
@@ -322,4 +323,19 @@ public class MenuscreenActivity2 extends AppCompatActivity implements View.OnCli
         } else
             return true;
     }
+
+
+    public boolean checkVibratePermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.VIBRATE)) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.VIBRATE}, 125);
+            }
+            return false;
+
+        } else
+            return true;
+    }
+
+
 }

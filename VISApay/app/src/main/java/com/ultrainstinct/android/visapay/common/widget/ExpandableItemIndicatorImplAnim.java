@@ -32,7 +32,7 @@ import com.ultrainstinct.android.visapay.R;
 
 // NOTE: AnimatedVectorDrawableCompat works on API level 11+
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-class ExpandableItemIndicatorImplAnim extends ExpandableItemIndicator.Impl {
+class ExpandableItemIndicatorImplAnim extends ExpandableItemIndicator.Impl{
     private AppCompatImageView mImageView;
 
     @Override

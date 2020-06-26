@@ -9,8 +9,10 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,6 +21,11 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.blikoon.qrcodescanner.QrCodeActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
@@ -31,6 +38,9 @@ public class QRCodeActivity extends AppCompatActivity implements EasyPermissions
     private final String LOGTAG = "QRCScanner-MainActivity";
     private static final int RC_CAMERA_PERM = 123;
     private static final int RC_EXTERNAL_PERM = 124;
+    DatabaseReference mRef;
+    int currentCount = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +48,24 @@ public class QRCodeActivity extends AppCompatActivity implements EasyPermissions
         setContentView(R.layout.activity_qrcode);
         cameraTask();
         externalStorageTask();
+
+        mRef = FirebaseDatabase.getInstance().getReference("QR");
+        mRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Iterable<DataSnapshot> itr = snapshot.getChildren();
+                for(DataSnapshot ds : itr){
+                    currentCount = ds.getValue(Integer.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(QRCodeActivity.this, "Failed to fetch count! " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         button =  findViewById(R.id.button_start_scan);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +81,7 @@ public class QRCodeActivity extends AppCompatActivity implements EasyPermissions
     public void cameraTask() {
         if (hasCameraPermission()) {
             // Have permission, do the thing!
-            Toast.makeText(this, "TODO: Camera things", Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, "TODO: Camera things", Toast.LENGTH_LONG).show();
         } else {
             // Ask for one permission
             EasyPermissions.requestPermissions(
@@ -135,8 +163,7 @@ public class QRCodeActivity extends AppCompatActivity implements EasyPermissions
             return;
 
         }
-        if(requestCode == REQUEST_CODE_QR_SCAN)
-        {
+        if(requestCode == REQUEST_CODE_QR_SCAN) {
             if(data==null)
                 return;
             //Getting the passed result
@@ -153,7 +180,28 @@ public class QRCodeActivity extends AppCompatActivity implements EasyPermissions
                     });
             alertDialog.show();
 
+            SharedPreferences sharedPreferences = getBaseContext().getSharedPreferences("QR", Context.MODE_PRIVATE);
+
+            if(sharedPreferences == null || sharedPreferences.getInt("QR",Context.MODE_PRIVATE) == 0){
+                Toast.makeText(this, "Creating Session! Welcome to the store", Toast.LENGTH_SHORT).show();
+                SharedPreferences sharedPref = getBaseContext().getSharedPreferences("QR",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor =sharedPref.edit();
+                editor.putInt("QR",1);
+                editor.commit();
+                currentCount--;
+            }
+            else{
+                Toast.makeText(this, "Thanks for visting! Session destroyed successfully", Toast.LENGTH_SHORT).show();
+                SharedPreferences sharedPref = getBaseContext().getSharedPreferences("QR",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putInt("QR",0);
+                editor.commit();
+                currentCount++;
+            }
         }
+        mRef.removeValue();
+        String uploadId = mRef.push().getKey();
+        mRef.child(uploadId).setValue(currentCount);
     }
 
     public boolean checkReadPermissionPermission() {

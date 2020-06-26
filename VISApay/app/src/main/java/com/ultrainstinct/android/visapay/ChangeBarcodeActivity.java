@@ -11,7 +11,7 @@ public class ChangeBarcodeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_barcode);
-        startActivity(new Intent(this,ExpandableDraggableSwipeableExampleActivity.class));
+        startActivity(new Intent(this, ExpandableDraggableSwipeableExampleActivity.class));
         finish();
     }
 }

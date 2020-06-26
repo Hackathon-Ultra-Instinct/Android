@@ -1,24 +1,28 @@
 package com.ultrainstinct.android.visapay;
 
-
-import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ultrainstinct.android.visapay.common.data.AbstractExpandableDataProvider;
-import com.ultrainstinct.android.visapay.common.fragment.ExampleExpandableDataProviderFragment;
-import com.ultrainstinct.android.visapay.common.fragment.ExpandableItemPinnedMessageDialogFragment;
+import android.os.Bundle;
+import android.widget.Toast;
+
 import com.google.android.material.snackbar.Snackbar;
 import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandableItemManager;
+import com.ultrainstinct.android.visapay.common.data.AbstractExpandableDataProvider;
+import com.ultrainstinct.android.visapay.common.data.ExampleExpandableVerifyCartDataProvider;
+import com.ultrainstinct.android.visapay.common.fragment.ExampleExpandableVerifyCartDataProviderFragment;
+import com.ultrainstinct.android.visapay.common.fragment.ExpandableItemPinnedMessageDialogFragment;
 
-public class ExpandableDraggableSwipeableExampleActivity extends AppCompatActivity implements ExpandableItemPinnedMessageDialogFragment.EventListener {
+import java.util.ArrayList;
+
+public class ExpandableDraggableSwipeableExampleVerifyCartActivity extends AppCompatActivity implements ExpandableItemPinnedMessageDialogFragment.EventListener {
     private static final String FRAGMENT_TAG_DATA_PROVIDER = "data provider";
     private static final String FRAGMENT_LIST_VIEW = "list view";
     private static final String FRAGMENT_TAG_ITEM_PINNED_DIALOG = "item pinned dialog";
+    ArrayList<Integer> itemsRemoved = new ArrayList<Integer>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +31,10 @@ public class ExpandableDraggableSwipeableExampleActivity extends AppCompatActivi
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(new ExampleExpandableDataProviderFragment(), FRAGMENT_TAG_DATA_PROVIDER)
+                    .add(new ExampleExpandableVerifyCartDataProviderFragment(), FRAGMENT_TAG_DATA_PROVIDER)
                     .commit();
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new ExpandableDraggableSwipeableExampleFragment(), FRAGMENT_LIST_VIEW)
+                    .add(R.id.container, new ExpandableDraggableSwipeableExampleVerifyCartFragment(), FRAGMENT_LIST_VIEW)
                     .commit();
         }
     }
@@ -46,6 +50,7 @@ public class ExpandableDraggableSwipeableExampleActivity extends AppCompatActivi
                 R.string.snack_bar_text_group_item_removed,
                 Snackbar.LENGTH_LONG);
 
+        itemsRemoved.add(groupPosition);
         snackbar.setAction(R.string.snack_bar_action_undo, v -> onItemUndoActionClicked());
         snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.snackbar_action_color_done));
         snackbar.show();
@@ -104,7 +109,7 @@ public class ExpandableDraggableSwipeableExampleActivity extends AppCompatActivi
         if (data.isPinned()) {
             // unpin if tapped the pinned item
             data.setPinned(false);
-            ((ExpandableDraggableSwipeableExampleFragment) fragment).notifyGroupItemChanged(groupPosition);
+            ((ExpandableDraggableSwipeableExampleVerifyCartFragment) fragment).notifyGroupItemChanged(groupPosition);
         }
     }
 
@@ -115,7 +120,7 @@ public class ExpandableDraggableSwipeableExampleActivity extends AppCompatActivi
         if (data.isPinned()) {
             // unpin if tapped the pinned item
             data.setPinned(false);
-            ((ExpandableDraggableSwipeableExampleFragment) fragment).notifyChildItemChanged(groupPosition, childPosition);
+            ((ExpandableDraggableSwipeableExampleVerifyCartFragment) fragment).notifyChildItemChanged(groupPosition, childPosition);
         }
     }
 
@@ -132,10 +137,11 @@ public class ExpandableDraggableSwipeableExampleActivity extends AppCompatActivi
 
         if (childPosition == RecyclerView.NO_POSITION) {
             // group item
-            ((ExpandableDraggableSwipeableExampleFragment) fragment).notifyGroupItemRestored(groupPosition);
+            itemsRemoved.remove(groupPosition);
+            ((ExpandableDraggableSwipeableExampleVerifyCartFragment) fragment).notifyGroupItemRestored(groupPosition);
         } else {
             // child item
-            ((ExpandableDraggableSwipeableExampleFragment) fragment).notifyChildItemRestored(groupPosition, childPosition);
+            ((ExpandableDraggableSwipeableExampleVerifyCartFragment) fragment).notifyChildItemRestored(groupPosition, childPosition);
         }
     }
 
@@ -147,16 +153,32 @@ public class ExpandableDraggableSwipeableExampleActivity extends AppCompatActivi
         if (childPosition == RecyclerView.NO_POSITION) {
             // group item
             getDataProvider().getGroupItem(groupPosition).setPinned(ok);
-            ((ExpandableDraggableSwipeableExampleFragment) fragment).notifyGroupItemChanged(groupPosition);
+            ((ExpandableDraggableSwipeableExampleVerifyCartFragment) fragment).notifyGroupItemChanged(groupPosition);
         } else {
             // child item
             getDataProvider().getChildItem(groupPosition, childPosition).setPinned(ok);
-            ((ExpandableDraggableSwipeableExampleFragment) fragment).notifyChildItemChanged(groupPosition, childPosition);
+            ((ExpandableDraggableSwipeableExampleVerifyCartFragment) fragment).notifyChildItemChanged(groupPosition, childPosition);
         }
     }
 
     public AbstractExpandableDataProvider getDataProvider() {
         final Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_TAG_DATA_PROVIDER);
-        return ((ExampleExpandableDataProviderFragment) fragment).getDataProvider();
+        return ((ExampleExpandableVerifyCartDataProviderFragment) fragment).getDataProvider();
     }
+
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        StringBuilder t = new StringBuilder();
+        t.append("ITEMS TO BE DELETED");
+
+        for(int c : itemsRemoved){
+            t.append('\n');
+            t.append(ExampleExpandableVerifyCartDataProvider.cartContents.get(c).getUserId());
+        }
+        Toast.makeText(this,t.toString(), Toast.LENGTH_SHORT).show();
+    }
+
 }

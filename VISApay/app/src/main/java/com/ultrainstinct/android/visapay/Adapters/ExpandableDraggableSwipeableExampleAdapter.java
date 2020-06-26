@@ -27,7 +27,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.ultrainstinct.android.visapay.R;
 import com.ultrainstinct.android.visapay.common.data.AbstractExpandableDataProvider;
 import com.ultrainstinct.android.visapay.common.utils.DrawableUtils;
