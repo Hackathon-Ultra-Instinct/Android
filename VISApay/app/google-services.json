@@ -1,42 +1,42 @@
 {
   "project_info": {
-    "project_number": "422427273698",
-    "firebase_url": "https://visapay-fef6e.firebaseio.com",
-    "project_id": "visapay-fef6e",
-    "storage_bucket": "visapay-fef6e.appspot.com"
+    "project_number": "70528726575",
+    "firebase_url": "https://visapay-8d3a5.firebaseio.com",
+    "project_id": "visapay-8d3a5",
+    "storage_bucket": "visapay-8d3a5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:422427273698:android:56f175bc956178c01fb1bb",
+        "mobilesdk_app_id": "1:70528726575:android:120e2d9991d8d7b04bf8da",
         "android_client_info": {
-          "package_name": "com.example.android.visapay"
+          "package_name": "com.ultrainstinct.android.visapay"
         }
       },
       "oauth_client": [
         {
-          "client_id": "422427273698-fmso6bii0e5biepu519ugc0pv5c2u2ai.apps.googleusercontent.com",
+          "client_id": "70528726575-c1bs340e3s9gbct5gikr4p7casa2tln0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.android.visapay",
+            "package_name": "com.ultrainstinct.android.visapay",
             "certificate_hash": "738ed68cb5dcd66d4c3e819c7688f1d9ef649a10"
           }
         },
         {
-          "client_id": "422427273698-0jadci72b19rurij28k63vo9r4njvccc.apps.googleusercontent.com",
+          "client_id": "70528726575-ndlhb1kva63a75k3tv8vbiqaebhtd73s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCGH8Xa7oU3_KeFh7cwn1xdkckdYPbFr8Y"
+          "current_key": "AIzaSyCxO4Krj3a9lp49CtIu6MSa5pMCgxIg1s0"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "422427273698-0jadci72b19rurij28k63vo9r4njvccc.apps.googleusercontent.com",
+              "client_id": "70528726575-ndlhb1kva63a75k3tv8vbiqaebhtd73s.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

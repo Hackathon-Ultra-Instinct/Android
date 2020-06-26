@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.visapay">
+    package="com.ultrainstinct.android.visapay">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -18,11 +19,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ExpandableDraggableSwipeableExampleActivity"></activity>
+        <activity android:name=".AdvancedRecyclerViews.ExpandableDraggableSwipeableExampleParkingActivity"></activity>
+        <activity android:name=".AdvancedRecyclerViews.ExpandableDraggableSwipeableExampleChangeQRcodeActivity" />
+        <activity android:name=".AdvancedRecyclerViews.ExpandableDraggableSwipeableExampleChangeBarcodeActivity" />
+        <activity android:name=".AdvancedRecyclerViews.ExpandableDraggableSwipeableExampleSalesActivity" />
+        <activity android:name=".AdvancedRecyclerViews.ExpandableDraggableSwipeableExampleVerifyCartActivity" />
+        <activity android:name=".AdvancedRecyclerViews.ExpandableDraggableSwipeableExampleActivity" />
         <activity android:name=".ParkingChargesActivity" />
         <activity android:name=".ChangeQRcodeActivity" />
         <activity android:name=".ChangeBarcodeActivity" />
-        <activity android:name=".SaleActivity" />
+        <activity android:name=".SalesActivity" />
         <activity android:name=".VerifyCartActivity" />
         <activity android:name=".CrowdDetailsActivity" />
         <activity android:name=".TransactionHistoryActivity" />
