@@ -1,13 +1,13 @@
 package com.ultrainstinct.android.visapay.Models;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class ParkingDetails {
-    String cardNumber,key;
-    Date parkingTime;
+    String carNumber,key,parkingTime;
 
-    public ParkingDetails(String cardNumber, String key, Date parkingTime) {
-        this.cardNumber = cardNumber;
+    public ParkingDetails(String carNumber, String key, String parkingTime) {
+        this.carNumber = carNumber;
         this.key = key;
         this.parkingTime = parkingTime;
     }
@@ -16,12 +16,12 @@ public class ParkingDetails {
 
     }
 
-    public String getCardNumber() {
-        return cardNumber;
+    public String getCarNumber() {
+        return carNumber;
     }
 
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
+    public void setCarNumber(String cardNumber) {
+        this.carNumber = cardNumber;
     }
 
     public String getKey() {
@@ -32,11 +32,11 @@ public class ParkingDetails {
         this.key = key;
     }
 
-    public Date getParkingTime() {
+    public String getParkingTime() {
         return parkingTime;
     }
 
-    public void setParkingTime(Date parkingTime) {
+    public void setParkingTime(String parkingTime) {
         this.parkingTime = parkingTime;
     }
 }

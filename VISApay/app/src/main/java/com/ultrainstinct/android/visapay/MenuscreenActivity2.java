@@ -26,6 +26,7 @@ import com.github.tbouron.shakedetector.library.ShakeDetector;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.ultrainstinct.android.visapay.Models.ParkingDetails;
 import com.yalantis.guillotine.animation.GuillotineAnimation;
 
 import java.text.DateFormat;
@@ -261,13 +262,13 @@ public class MenuscreenActivity2 extends AppCompatActivity implements View.OnCli
          else if (item.getText().equals("Verify Cart"))
             startActivity(new Intent(getBaseContext(), VerifyCartActivity.class));
          else if (item.getText().equals("Sale"))
-            startActivity(new Intent(getBaseContext(), SaleActivity.class));
+            startActivity(new Intent(getBaseContext(), SalesActivity.class));
          else if (item.getText().equals("Change Barcode"))
             startActivity(new Intent(getBaseContext(), ChangeBarcodeActivity.class));
          else if (item.getText().equals("Change QR code"))
             startActivity(new Intent(getBaseContext(), ChangeQRcodeActivity.class));
          else if (item.getText().equals("Parking"))
-             startActivity(new Intent(getBaseContext(), ParkingChargesActivity.class));
+             startActivity(new Intent(getBaseContext(), ParkingActivity.class));
 
     }
 

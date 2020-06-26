@@ -1,4 +1,4 @@
-package com.ultrainstinct.android.visapay.uploadUserInfo;
+package com.ultrainstinct.android.visapay.Models;
 
 public class UploadInfo {
     String name;

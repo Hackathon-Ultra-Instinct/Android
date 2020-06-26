@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ultrainstinct.android.visapay.MenuscreenActivity;
+import com.ultrainstinct.android.visapay.Models.UploadInfo;
 import com.ultrainstinct.android.visapay.R;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;

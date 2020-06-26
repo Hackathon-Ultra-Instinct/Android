@@ -13,13 +13,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.roger.catloadinglibrary.CatLoadingView;
+import com.ultrainstinct.android.visapay.AdvancedRecyclerViews.ExpandableDraggableSwipeableExampleActivity;
+import com.ultrainstinct.android.visapay.AdvancedRecyclerViews.ExpandableDraggableSwipeableExampleSalesActivity;
 import com.ultrainstinct.android.visapay.AdvancedRecyclerViews.ExpandableDraggableSwipeableExampleVerifyCartActivity;
 import com.ultrainstinct.android.visapay.Models.Cart;
+import com.ultrainstinct.android.visapay.Models.Sale;
+import com.ultrainstinct.android.visapay.common.data.ExampleExpandableDataProvider;
+import com.ultrainstinct.android.visapay.common.data.ExampleExpandableSalesDataProvider;
 import com.ultrainstinct.android.visapay.common.data.ExampleExpandableVerifyCartDataProvider;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
-public class VerifyCartActivity extends AppCompatActivity {
+public class SalesActivity extends AppCompatActivity {
 
     private DatabaseReference mRef;
     private DatabaseReference mCart;
@@ -38,36 +43,36 @@ public class VerifyCartActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(getBaseContext(), ExpandableDraggableSwipeableExampleVerifyCartActivity.class));
+                startActivity(new Intent(getBaseContext(), ExpandableDraggableSwipeableExampleSalesActivity.class));
                 finish();
             }
         },3000);
     }
 
 
-    private void getCartContents() {
+    private void getSaleContents() {
         mRef = FirebaseDatabase.getInstance().getReference();
-        mCart = mRef.child("Cart");
+        mCart = mRef.child("Sale");
 
         mCart.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Iterable<DataSnapshot> c = dataSnapshot.getChildren();
                 for (DataSnapshot dsCart : c) {
-                    Cart cartContent = dsCart.getValue(Cart.class);
-                    ExampleExpandableVerifyCartDataProvider.cartContents.add(cartContent);
+                    Sale saleContent = dsCart.getValue(Sale.class);
+                    ExampleExpandableSalesDataProvider.salesContents.add(saleContent);
                     String s;
-                    s = "user : ";
-                    s = s + cartContent.getUserId();
+                    s = "sale(%) : ";
+                    s = s + String.valueOf(saleContent.getAmount());
                     s = s + "$";
-                    ExampleExpandableVerifyCartDataProvider.groupItems = ExampleExpandableVerifyCartDataProvider.groupItems + s;
-                    s = s + "status : ";
-                    s = s + String.valueOf(cartContent.getKey());
+                    ExampleExpandableSalesDataProvider.groupItems = ExampleExpandableSalesDataProvider.groupItems + s;
+                    s = s + "key : ";
+                    s = s + String.valueOf(saleContent.getKey());
                     s = s + "$";
                     s = s + "product : ";
-                    s = s + cartContent.getProduct();
+                    s = s + saleContent.getProduct();
                     s = s + "$";
-                    ExampleExpandableVerifyCartDataProvider.childItems = ExampleExpandableVerifyCartDataProvider.childItems + s;
+                    ExampleExpandableSalesDataProvider.childItems = ExampleExpandableSalesDataProvider.childItems + s;
                     Log.e(TAG, "onDataChange: " + s );
                 }
             }
@@ -80,8 +85,8 @@ public class VerifyCartActivity extends AppCompatActivity {
 
 
     private void readAndSerialise() {
-        ExampleExpandableVerifyCartDataProvider.groupItems = "";
-        ExampleExpandableVerifyCartDataProvider.childItems = "";
-        getCartContents();
+        ExampleExpandableSalesDataProvider.groupItems = "";
+        ExampleExpandableSalesDataProvider.childItems = "";
+        getSaleContents();
     }
 }

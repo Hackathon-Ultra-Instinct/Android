@@ -1,20 +1,4 @@
-/*
- *    Copyright (C) 2015 Haruki Hasegawa
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
-package com.ultrainstinct.android.visapay;
+package com.ultrainstinct.android.visapay.Fragments;
 
 import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;
@@ -31,10 +15,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ultrainstinct.android.visapay.Adapters.ExpandableDraggableSwipeableExampleAdapter;
-import com.ultrainstinct.android.visapay.ExpandableDraggableSwipeableExampleActivity;
-import com.ultrainstinct.android.visapay.R;
-import com.ultrainstinct.android.visapay.common.data.AbstractExpandableDataProvider;
 import com.h6ah4i.android.widget.advrecyclerview.animator.GeneralItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.animator.SwipeDismissItemAnimator;
 import com.h6ah4i.android.widget.advrecyclerview.decoration.ItemShadowDecorator;
@@ -44,10 +24,13 @@ import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandab
 import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeManager;
 import com.h6ah4i.android.widget.advrecyclerview.touchguard.RecyclerViewTouchActionGuardManager;
 import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils;
+import com.ultrainstinct.android.visapay.Adapters.ExpandableDraggableSwipeableExampleAdapter;
+import com.ultrainstinct.android.visapay.AdvancedRecyclerViews.ExpandableDraggableSwipeableExampleVerifyCartActivity;
+import com.ultrainstinct.android.visapay.R;
+import com.ultrainstinct.android.visapay.common.data.AbstractExpandableDataProvider;
 
-
-public class ExpandableDraggableSwipeableExampleFragment extends Fragment
-    implements RecyclerViewExpandableItemManager.OnGroupCollapseListener,
+public class ExpandableDraggableSwipeableExampleVerifyCartFragment extends Fragment
+        implements RecyclerViewExpandableItemManager.OnGroupCollapseListener,
         RecyclerViewExpandableItemManager.OnGroupExpandListener {
     private static final String SAVED_STATE_EXPANDABLE_ITEM_MANAGER = "RecyclerViewExpandableItemManager";
 
@@ -60,7 +43,7 @@ public class ExpandableDraggableSwipeableExampleFragment extends Fragment
     private RecyclerViewSwipeManager mRecyclerViewSwipeManager;
     private RecyclerViewTouchActionGuardManager mRecyclerViewTouchActionGuardManager;
 
-    public ExpandableDraggableSwipeableExampleFragment() {
+    public ExpandableDraggableSwipeableExampleVerifyCartFragment() {
         super();
     }
 
@@ -102,22 +85,22 @@ public class ExpandableDraggableSwipeableExampleFragment extends Fragment
         myItemAdapter.setEventListener(new ExpandableDraggableSwipeableExampleAdapter.EventListener() {
             @Override
             public void onGroupItemRemoved(int groupPosition) {
-                ((ExpandableDraggableSwipeableExampleActivity) getActivity()).onGroupItemRemoved(groupPosition);
+                ((ExpandableDraggableSwipeableExampleVerifyCartActivity) getActivity()).onGroupItemRemoved(groupPosition);
             }
 
             @Override
             public void onChildItemRemoved(int groupPosition, int childPosition) {
-                ((ExpandableDraggableSwipeableExampleActivity) getActivity()).onChildItemRemoved(groupPosition, childPosition);
+                ((ExpandableDraggableSwipeableExampleVerifyCartActivity) getActivity()).onChildItemRemoved(groupPosition, childPosition);
             }
 
             @Override
             public void onGroupItemPinned(int groupPosition) {
-                ((ExpandableDraggableSwipeableExampleActivity) getActivity()).onGroupItemPinned(groupPosition);
+                ((ExpandableDraggableSwipeableExampleVerifyCartActivity) getActivity()).onGroupItemPinned(groupPosition);
             }
 
             @Override
             public void onChildItemPinned(int groupPosition, int childPosition) {
-                ((ExpandableDraggableSwipeableExampleActivity) getActivity()).onChildItemPinned(groupPosition, childPosition);
+                ((ExpandableDraggableSwipeableExampleVerifyCartActivity) getActivity()).onChildItemPinned(groupPosition, childPosition);
             }
 
             @Override
@@ -246,9 +229,9 @@ public class ExpandableDraggableSwipeableExampleFragment extends Fragment
         final int childPosition = RecyclerViewExpandableItemManager.getPackedPositionChild(expandablePosition);
 
         if (childPosition == RecyclerView.NO_POSITION) {
-            ((ExpandableDraggableSwipeableExampleActivity) getActivity()).onGroupItemClicked(groupPosition);
+            ((ExpandableDraggableSwipeableExampleVerifyCartActivity) getActivity()).onGroupItemClicked(groupPosition);
         } else {
-            ((ExpandableDraggableSwipeableExampleActivity) getActivity()).onChildItemClicked(groupPosition, childPosition);
+            ((ExpandableDraggableSwipeableExampleVerifyCartActivity) getActivity()).onChildItemClicked(groupPosition, childPosition);
         }
     }
 
@@ -257,7 +240,7 @@ public class ExpandableDraggableSwipeableExampleFragment extends Fragment
     }
 
     public AbstractExpandableDataProvider getDataProvider() {
-        return ((ExpandableDraggableSwipeableExampleActivity) getActivity()).getDataProvider();
+        return ((ExpandableDraggableSwipeableExampleVerifyCartActivity) getActivity()).getDataProvider();
     }
 
     public void notifyGroupItemRestored(int groupPosition) {

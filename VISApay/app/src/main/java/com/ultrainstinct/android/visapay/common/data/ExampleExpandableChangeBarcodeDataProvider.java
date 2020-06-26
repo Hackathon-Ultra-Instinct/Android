@@ -1,30 +1,18 @@
-/*
- *    Copyright (C) 2015 Haruki Hasegawa
- *
- *    Licensed under the Apache License, Version 2.0 (the "License");
- *    you may not use this file except in compliance with the License.
- *    You may obtain a copy of the License at
- *
- *        http://www.apache.org/licenses/LICENSE-2.0
- *
- *    Unless required by applicable law or agreed to in writing, software
- *    distributed under the License is distributed on an "AS IS" BASIS,
- *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *    See the License for the specific language governing permissions and
- *    limitations under the License.
- */
-
 package com.ultrainstinct.android.visapay.common.data;
 
+import android.util.Log;
 
 import androidx.core.util.Pair;
+
 import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandableItemManager;
-import com.ultrainstinct.android.visapay.Models.Cart;
+import com.ultrainstinct.android.visapay.Models.Barcode;
+import com.ultrainstinct.android.visapay.Models.Sale;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ExampleExpandableDataProvider extends AbstractExpandableDataProvider {
+public class ExampleExpandableChangeBarcodeDataProvider extends AbstractExpandableDataProvider {
     private List<Pair<GroupData, List<ChildData>>> mData;
 
     // for undo group item
@@ -36,14 +24,15 @@ public class ExampleExpandableDataProvider extends AbstractExpandableDataProvide
     private long mLastRemovedChildParentGroupId = -1;
     private int mLastRemovedChildPosition = -1;
 
-    public static String groupItems = "A", childItems = "abc:name$def:add$dfdsf:ffsd$";
-    public static ArrayList<Cart> cartContents = new ArrayList<Cart>();
+    public static String groupItems = "", childItems = "";
+    public static ArrayList<Barcode> changeBarcodeContents = new ArrayList<Barcode>();
 
 
-    public ExampleExpandableDataProvider(){
-
+    public ExampleExpandableChangeBarcodeDataProvider(){
 
         mData = new LinkedList<>();
+
+        Log.e("TEST", "ExampleExpandableChangeBarcodeDataProvider: " + groupItems);
 
         for (int i = 0, j = 0; i < groupItems.length();i++) {
             final long groupId = i;
@@ -53,7 +42,7 @@ public class ExampleExpandableDataProvider extends AbstractExpandableDataProvide
                 groupText = groupText + Character.toString(groupItems.charAt(i));
                 i++;
             }
-            final ConcreteGroupData group = new ConcreteGroupData(groupId, groupText);
+            final ExampleExpandableChangeBarcodeDataProvider.ConcreteGroupData group = new ExampleExpandableChangeBarcodeDataProvider.ConcreteGroupData(groupId, groupText);
             final List<ChildData> children = new ArrayList<>();
 
             for(int k = 0; k < 3; k++){
@@ -65,7 +54,7 @@ public class ExampleExpandableDataProvider extends AbstractExpandableDataProvide
                 }
                 j++;
                 long childId = group.generateNewChildId();
-                children.add(new ConcreteChildData(childId, s));
+                children.add(new ExampleExpandableChangeBarcodeDataProvider.ConcreteChildData(childId, s));
             }
             mData.add(new Pair<>(group, children));
         }
@@ -124,11 +113,11 @@ public class ExampleExpandableDataProvider extends AbstractExpandableDataProvide
         final Pair<GroupData, List<ChildData>> fromGroup = mData.get(fromGroupPosition);
         final Pair<GroupData, List<ChildData>> toGroup = mData.get(toGroupPosition);
 
-        final ConcreteChildData item = (ConcreteChildData) fromGroup.second.remove(fromChildPosition);
+        final ExampleExpandableChangeBarcodeDataProvider.ConcreteChildData item = (ExampleExpandableChangeBarcodeDataProvider.ConcreteChildData) fromGroup.second.remove(fromChildPosition);
 
         if (toGroupPosition != fromGroupPosition) {
             // assign a new ID
-            final long newId = ((ConcreteGroupData) toGroup.first).generateNewChildId();
+            final long newId = ((ExampleExpandableChangeBarcodeDataProvider.ConcreteGroupData) toGroup.first).generateNewChildId();
             item.setChildId(newId);
         }
 
@@ -298,3 +287,4 @@ public class ExampleExpandableDataProvider extends AbstractExpandableDataProvide
     }
 
 }
+

@@ -1,4 +1,4 @@
-package com.ultrainstinct.android.visapay;
+package com.ultrainstinct.android.visapay.Fragments;
 
 import android.graphics.drawable.NinePatchDrawable;
 import android.os.Build;
@@ -25,11 +25,11 @@ import com.h6ah4i.android.widget.advrecyclerview.swipeable.RecyclerViewSwipeMana
 import com.h6ah4i.android.widget.advrecyclerview.touchguard.RecyclerViewTouchActionGuardManager;
 import com.h6ah4i.android.widget.advrecyclerview.utils.WrapperAdapterUtils;
 import com.ultrainstinct.android.visapay.Adapters.ExpandableDraggableSwipeableExampleAdapter;
-import com.ultrainstinct.android.visapay.ExpandableDraggableSwipeableExampleVerifyCartActivity;
+import com.ultrainstinct.android.visapay.AdvancedRecyclerViews.ExpandableDraggableSwipeableExampleSalesActivity;
 import com.ultrainstinct.android.visapay.R;
 import com.ultrainstinct.android.visapay.common.data.AbstractExpandableDataProvider;
 
-public class ExpandableDraggableSwipeableExampleVerifyCartFragment extends Fragment
+public class ExpandableDraggableSwipeableExampleSalesFragment extends Fragment
         implements RecyclerViewExpandableItemManager.OnGroupCollapseListener,
         RecyclerViewExpandableItemManager.OnGroupExpandListener {
     private static final String SAVED_STATE_EXPANDABLE_ITEM_MANAGER = "RecyclerViewExpandableItemManager";
@@ -43,7 +43,7 @@ public class ExpandableDraggableSwipeableExampleVerifyCartFragment extends Fragm
     private RecyclerViewSwipeManager mRecyclerViewSwipeManager;
     private RecyclerViewTouchActionGuardManager mRecyclerViewTouchActionGuardManager;
 
-    public ExpandableDraggableSwipeableExampleVerifyCartFragment() {
+    public ExpandableDraggableSwipeableExampleSalesFragment() {
         super();
     }
 
@@ -85,22 +85,22 @@ public class ExpandableDraggableSwipeableExampleVerifyCartFragment extends Fragm
         myItemAdapter.setEventListener(new ExpandableDraggableSwipeableExampleAdapter.EventListener() {
             @Override
             public void onGroupItemRemoved(int groupPosition) {
-                ((ExpandableDraggableSwipeableExampleVerifyCartActivity) getActivity()).onGroupItemRemoved(groupPosition);
+                ((ExpandableDraggableSwipeableExampleSalesActivity) getActivity()).onGroupItemRemoved(groupPosition);
             }
 
             @Override
             public void onChildItemRemoved(int groupPosition, int childPosition) {
-                ((ExpandableDraggableSwipeableExampleVerifyCartActivity) getActivity()).onChildItemRemoved(groupPosition, childPosition);
+                ((ExpandableDraggableSwipeableExampleSalesActivity) getActivity()).onChildItemRemoved(groupPosition, childPosition);
             }
 
             @Override
             public void onGroupItemPinned(int groupPosition) {
-                ((ExpandableDraggableSwipeableExampleVerifyCartActivity) getActivity()).onGroupItemPinned(groupPosition);
+                ((ExpandableDraggableSwipeableExampleSalesActivity) getActivity()).onGroupItemPinned(groupPosition);
             }
 
             @Override
             public void onChildItemPinned(int groupPosition, int childPosition) {
-                ((ExpandableDraggableSwipeableExampleVerifyCartActivity) getActivity()).onChildItemPinned(groupPosition, childPosition);
+                ((ExpandableDraggableSwipeableExampleSalesActivity) getActivity()).onChildItemPinned(groupPosition, childPosition);
             }
 
             @Override
@@ -229,9 +229,9 @@ public class ExpandableDraggableSwipeableExampleVerifyCartFragment extends Fragm
         final int childPosition = RecyclerViewExpandableItemManager.getPackedPositionChild(expandablePosition);
 
         if (childPosition == RecyclerView.NO_POSITION) {
-            ((ExpandableDraggableSwipeableExampleVerifyCartActivity) getActivity()).onGroupItemClicked(groupPosition);
+            ((ExpandableDraggableSwipeableExampleSalesActivity) getActivity()).onGroupItemClicked(groupPosition);
         } else {
-            ((ExpandableDraggableSwipeableExampleVerifyCartActivity) getActivity()).onChildItemClicked(groupPosition, childPosition);
+            ((ExpandableDraggableSwipeableExampleSalesActivity) getActivity()).onChildItemClicked(groupPosition, childPosition);
         }
     }
 
@@ -240,7 +240,7 @@ public class ExpandableDraggableSwipeableExampleVerifyCartFragment extends Fragm
     }
 
     public AbstractExpandableDataProvider getDataProvider() {
-        return ((ExpandableDraggableSwipeableExampleVerifyCartActivity) getActivity()).getDataProvider();
+        return ((ExpandableDraggableSwipeableExampleSalesActivity) getActivity()).getDataProvider();
     }
 
     public void notifyGroupItemRestored(int groupPosition) {
@@ -273,3 +273,4 @@ public class ExpandableDraggableSwipeableExampleVerifyCartFragment extends Fragm
         mAdapter.notifyItemChanged(flatPosition);
     }
 }
+
