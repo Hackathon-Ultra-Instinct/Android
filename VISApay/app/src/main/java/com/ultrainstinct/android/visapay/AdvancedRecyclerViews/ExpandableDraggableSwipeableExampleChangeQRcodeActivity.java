@@ -9,13 +9,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.Toast;
 
+
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.zxing.qrcode.encoder.QRCode;
 import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandableItemManager;
 import com.ultrainstinct.android.visapay.Fragments.ExpandableDraggableSwipeableExampleChangeQRcodeFragment;
+import com.ultrainstinct.android.visapay.Models.QRcode;
 import com.ultrainstinct.android.visapay.R;
 import com.ultrainstinct.android.visapay.common.data.AbstractExpandableDataProvider;
 import com.ultrainstinct.android.visapay.common.data.ExampleExpandableChangeQRcodeDataProvider;
-import com.ultrainstinct.android.visapay.common.fragment.ExampleExpandableChangeBarcodeDataProviderFragment;
 import com.ultrainstinct.android.visapay.common.fragment.ExampleExpandableChangeQRcodeDataProviderFragment;
 import com.ultrainstinct.android.visapay.common.fragment.ExpandableItemPinnedMessageDialogFragment;
 
@@ -26,6 +30,7 @@ public class ExpandableDraggableSwipeableExampleChangeQRcodeActivity extends App
     private static final String FRAGMENT_LIST_VIEW = "list view";
     private static final String FRAGMENT_TAG_ITEM_PINNED_DIALOG = "item pinned dialog";
     ArrayList<Integer> itemsRemoved = new ArrayList<Integer>();
+    QRcode lastDeleted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,12 @@ public class ExpandableDraggableSwipeableExampleChangeQRcodeActivity extends App
         snackbar.setAction(R.string.snack_bar_action_undo, v -> onItemUndoActionClicked());
         snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.snackbar_action_color_done));
         snackbar.show();
+
+        lastDeleted = ExampleExpandableChangeQRcodeDataProvider.changeQRcodeContents.get(groupPosition);
+        DatabaseReference mChangeQRcode = FirebaseDatabase.getInstance().getReference("QRcode");
+        DatabaseReference databaseReference = mChangeQRcode.child(ExampleExpandableChangeQRcodeDataProvider.changeQRcodeContents.get(groupPosition).getKey());
+        ExampleExpandableChangeQRcodeDataProvider.changeQRcodeContents.remove(groupPosition);
+        databaseReference.removeValue();
     }
 
     /**
@@ -140,7 +151,12 @@ public class ExpandableDraggableSwipeableExampleChangeQRcodeActivity extends App
 
         if (childPosition == RecyclerView.NO_POSITION) {
             // group item
-            itemsRemoved.remove(groupPosition);
+//            itemsRemoved.remove(groupPosition);
+
+            ExampleExpandableChangeQRcodeDataProvider.changeQRcodeContents.add(groupPosition,lastDeleted);
+            DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("QRcode");
+            mRef.child(lastDeleted.getKey()).setValue(lastDeleted);
+
             ((ExpandableDraggableSwipeableExampleChangeQRcodeFragment) fragment).notifyGroupItemRestored(groupPosition);
         } else {
             // child item
@@ -174,14 +190,14 @@ public class ExpandableDraggableSwipeableExampleChangeQRcodeActivity extends App
     public void onBackPressed() {
         super.onBackPressed();
 
-        StringBuilder t = new StringBuilder();
-        t.append("ITEMS TO BE DELETED");
-
-        for(int c : itemsRemoved){
-            t.append('\n');
-            t.append(ExampleExpandableChangeQRcodeDataProvider.changeQRcodeContents.get(c).getCode());
-        }
-        Toast.makeText(this,t.toString(), Toast.LENGTH_SHORT).show();
+//        StringBuilder t = new StringBuilder();
+//        t.append("ITEMS TO BE DELETED");
+//
+//        for(int c : itemsRemoved){
+//            t.append('\n');
+//            t.append(ExampleExpandableChangeQRcodeDataProvider.changeQRcodeContents.get(c).getCode());
+//        }
+//        Toast.makeText(this,t.toString(), Toast.LENGTH_SHORT).show();
     }
 
 }
