@@ -10,7 +10,6 @@ public class QRcode {
     }
 
     public QRcode() {
-
     }
 
     public String getCode() {

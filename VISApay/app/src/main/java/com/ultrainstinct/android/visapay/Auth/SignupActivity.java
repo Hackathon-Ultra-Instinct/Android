@@ -17,12 +17,14 @@ import android.widget.Toast;
 
 import com.ultrainstinct.android.visapay.MenuscreenActivity;
 import com.ultrainstinct.android.visapay.MenuscreenActivity2;
+import com.ultrainstinct.android.visapay.Models.UploadInfo;
 import com.ultrainstinct.android.visapay.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.ultrainstinct.android.visapay.uploadManualInfo.UploadInfoActivity;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
@@ -78,7 +80,7 @@ public class SignupActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser currentUser){
         Toast.makeText(this, "Welcome " + currentUser.getDisplayName(), Toast.LENGTH_SHORT).show();
         if(switchNumber == 1)
-            startActivity(new Intent(getBaseContext(), MenuscreenActivity.class));
+            startActivity(new Intent(getBaseContext(), UploadInfoActivity.class));
         else
             startActivity(new Intent(getBaseContext(), MenuscreenActivity2.class));
 

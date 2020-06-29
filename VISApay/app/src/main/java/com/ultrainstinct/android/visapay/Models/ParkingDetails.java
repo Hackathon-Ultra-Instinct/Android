@@ -1,8 +1,5 @@
 package com.ultrainstinct.android.visapay.Models;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class ParkingDetails {
     String carNumber,key,parkingTime;
 
@@ -20,8 +17,8 @@ public class ParkingDetails {
         return carNumber;
     }
 
-    public void setCarNumber(String cardNumber) {
-        this.carNumber = cardNumber;
+    public void setCarNumber(String carNumber) {
+        this.carNumber = carNumber;
     }
 
     public String getKey() {

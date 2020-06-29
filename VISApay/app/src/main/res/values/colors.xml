@@ -106,6 +106,22 @@
     <color name="bg_swipe_group_item_pinned">#fff45f30</color>
     <color name="bg_swipe_group_item_dismiss">#ff295db3</color>
 
+    <color name="colorSkin">#FFD6F67E</color>
+    <color name="lightBlue">#FF3CBCFC</color>
+    <color name="colordark">#FF064D71</color>
+    <color name="lightyellow">#fbf690</color>
+    <color name="lightorange">#f9d691</color>
+    <color name="darkyellow">#FFF0E51C</color>
+    <color name="darkorange">#FFF4AD23</color>
+    <color name="darkblue">#FF07A4F2</color>
+    <color name="lightpink">#f784ea</color>
+    <color name="darkgreen">#FF1EF606</color>
+    <color name="darkpink">#FFEF0AAA</color>
+    <color name="lightpurple">#FFCE76F7</color>
+    <color name="darkpurple">#FFAF13F7</color>
+    <color name="lightgreen">#FF85F678</color>
+    <color name="lightred">#FFF27464</color>
+
     <color name="snackbar_action_color_done">#ffccccff</color>
 
     <color name="expandable_item_indicator_color">#42000000</color>

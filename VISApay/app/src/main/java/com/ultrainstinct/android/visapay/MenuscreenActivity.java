@@ -22,7 +22,8 @@ import android.widget.Toast;
 import com.ultrainstinct.android.visapay.Adapters.MenuAdapter;
 import com.ultrainstinct.android.visapay.Auth.LoginActivity;
 import com.ultrainstinct.android.visapay.Models.Item;
-import com.ultrainstinct.android.visapay.uploadUserInfo.UploadInfoActivity;
+import com.ultrainstinct.android.visapay.Products.ProductsActivity;
+import com.ultrainstinct.android.visapay.uploadManualInfo.UploadInfoActivity;
 import com.github.tbouron.shakedetector.library.ShakeDetector;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -105,6 +106,8 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
         arrayList.add(new Item(getString(R.string.numberplate),R.drawable.number,"#ffffff"));
         arrayList.add(new Item(getString(R.string.shop),R.drawable.shopping,"#ffffff"));
         arrayList.add(new Item(getString(R.string.transaction),R.drawable.transaction_history,"#ffffff"));
+        arrayList.add(new Item(getString(R.string.products),R.drawable.product,"#ffffff"));
+
 
 
         MenuAdapter menuAdapter = new MenuAdapter(this, arrayList, this);
@@ -238,6 +241,9 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
             startActivity(new Intent(getBaseContext(), ShopActivity.class));
         else if (item.getText().equals("Transaction History"))
             startActivity(new Intent(getBaseContext(), TransactionHistoryActivity.class));
+        else if(item.getText().equals("Products"))
+            startActivity(new Intent(getBaseContext(), ProductsActivity.class));
+
 
     }
 

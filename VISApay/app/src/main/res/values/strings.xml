@@ -176,6 +176,13 @@
     <string name="dialog_message_child_item_pinned">Child item pinned! (group = %1$d, child = %2$d)</string>
     <string name="menu_item_about">About</string>
     <string name="parking2">Parking</string>
+    <string name="confirm_camera">This app need to access camera on your device.</string>
+    <string name="confirm_permission">This app need to access files on your device.</string>
+    <string name="btn_device">Detect</string>
+    <string name="error_not_found">Error</string>
+    <string name="action_gallery">Gallery</string>
+    <string name="action_camera">Camera</string>
+    <string name="products">Products</string>
 
 
 </resources>
