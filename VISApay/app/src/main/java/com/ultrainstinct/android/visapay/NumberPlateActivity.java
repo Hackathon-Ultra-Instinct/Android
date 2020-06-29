@@ -12,7 +12,7 @@ public class NumberPlateActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_number_plate);
 
-        startActivity(new Intent(this,DummyActivity.class));
+        startActivity(new Intent(this,TextActivity.class));
         finish();
     }
 }

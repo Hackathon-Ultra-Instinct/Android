@@ -10,12 +10,16 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandableItemManager;
 import com.ultrainstinct.android.visapay.Fragments.ExpandableDraggableSwipeableExampleChangeBarcodeFragment;
 import com.ultrainstinct.android.visapay.Fragments.ExpandableDraggableSwipeableExampleSalesFragment;
+import com.ultrainstinct.android.visapay.Models.Barcode;
 import com.ultrainstinct.android.visapay.R;
 import com.ultrainstinct.android.visapay.common.data.AbstractExpandableDataProvider;
 import com.ultrainstinct.android.visapay.common.data.ExampleExpandableChangeBarcodeDataProvider;
+import com.ultrainstinct.android.visapay.common.data.ExampleExpandableDataProvider;
 import com.ultrainstinct.android.visapay.common.data.ExampleExpandableSalesDataProvider;
 import com.ultrainstinct.android.visapay.common.fragment.ExampleExpandableChangeBarcodeDataProviderFragment;
 import com.ultrainstinct.android.visapay.common.fragment.ExampleExpandableDataProviderFragment;
@@ -29,6 +33,7 @@ public class ExpandableDraggableSwipeableExampleChangeBarcodeActivity extends Ap
     private static final String FRAGMENT_LIST_VIEW = "list view";
     private static final String FRAGMENT_TAG_ITEM_PINNED_DIALOG = "item pinned dialog";
     ArrayList<Integer> itemsRemoved = new ArrayList<Integer>();
+    Barcode lastDeleted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +61,17 @@ public class ExpandableDraggableSwipeableExampleChangeBarcodeActivity extends Ap
                 R.string.snack_bar_text_group_item_removed,
                 Snackbar.LENGTH_LONG);
 
-        itemsRemoved.add(groupPosition);
+//        itemsRemoved.add(groupPosition);
+
+        lastDeleted = ExampleExpandableChangeBarcodeDataProvider.changeBarcodeContents.get(groupPosition);
         snackbar.setAction(R.string.snack_bar_action_undo, v -> onItemUndoActionClicked());
         snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.snackbar_action_color_done));
         snackbar.show();
+
+        DatabaseReference mChangeBarcode = FirebaseDatabase.getInstance().getReference("Barcode");
+        DatabaseReference databaseReference = mChangeBarcode.child(ExampleExpandableChangeBarcodeDataProvider.changeBarcodeContents.get(groupPosition).getKey());
+        ExampleExpandableChangeBarcodeDataProvider.changeBarcodeContents.remove(groupPosition);
+        databaseReference.removeValue();
     }
 
     /**
@@ -143,7 +155,12 @@ public class ExpandableDraggableSwipeableExampleChangeBarcodeActivity extends Ap
 
         if (childPosition == RecyclerView.NO_POSITION) {
             // group item
-            itemsRemoved.remove(groupPosition);
+//            itemsRemoved.remove(groupPosition);
+
+            ExampleExpandableChangeBarcodeDataProvider.changeBarcodeContents.add(groupPosition,lastDeleted);
+            DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Barcode");
+            mRef.child(lastDeleted.getKey()).setValue(lastDeleted);
+
             ((ExpandableDraggableSwipeableExampleChangeBarcodeFragment) fragment).notifyGroupItemRestored(groupPosition);
         } else {
             // child item
@@ -177,14 +194,14 @@ public class ExpandableDraggableSwipeableExampleChangeBarcodeActivity extends Ap
     public void onBackPressed() {
         super.onBackPressed();
 
-        StringBuilder t = new StringBuilder();
-        t.append("ITEMS TO BE DELETED");
-
-        for(int c : itemsRemoved){
-            t.append('\n');
-            t.append(ExampleExpandableChangeBarcodeDataProvider.changeBarcodeContents.get(c).getCode());
-        }
-        Toast.makeText(this,t.toString(), Toast.LENGTH_SHORT).show();
+//        StringBuilder t = new StringBuilder();
+//        t.append("ITEMS TO BE DELETED");
+//
+//        for(int c : itemsRemoved){
+//            t.append('\n');
+//            t.append(ExampleExpandableChangeBarcodeDataProvider.changeBarcodeContents.get(c).getCode());
+//        }
+//        Toast.makeText(this,t.toString(), Toast.LENGTH_SHORT).show();
     }
 
 }

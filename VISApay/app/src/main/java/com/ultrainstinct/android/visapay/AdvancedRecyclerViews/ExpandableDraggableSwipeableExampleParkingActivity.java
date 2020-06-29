@@ -10,12 +10,17 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandableItemManager;
 import com.ultrainstinct.android.visapay.Fragments.ExpandableDraggableSwipeableExampleChangeBarcodeFragment;
 import com.ultrainstinct.android.visapay.Fragments.ExpandableDraggableSwipeableExampleFragment;
 import com.ultrainstinct.android.visapay.Fragments.ExpandableDraggableSwipeableExampleParkingFragment;
+import com.ultrainstinct.android.visapay.Models.ParkingDetails;
 import com.ultrainstinct.android.visapay.R;
 import com.ultrainstinct.android.visapay.common.data.AbstractExpandableDataProvider;
+import com.ultrainstinct.android.visapay.common.data.ExampleExpandableChangeQRcodeDataProvider;
+import com.ultrainstinct.android.visapay.common.data.ExampleExpandableDataProvider;
 import com.ultrainstinct.android.visapay.common.data.ExampleExpandableParkingDataProvider;
 import com.ultrainstinct.android.visapay.common.fragment.ExampleExpandableParkingDataProviderFragment;
 import com.ultrainstinct.android.visapay.common.fragment.ExpandableItemPinnedMessageDialogFragment;
@@ -27,6 +32,7 @@ public class ExpandableDraggableSwipeableExampleParkingActivity extends AppCompa
     private static final String FRAGMENT_LIST_VIEW = "list view";
     private static final String FRAGMENT_TAG_ITEM_PINNED_DIALOG = "item pinned dialog";
     ArrayList<Integer> itemsRemoved = new ArrayList<Integer>();
+    ParkingDetails lastDeleted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +60,16 @@ public class ExpandableDraggableSwipeableExampleParkingActivity extends AppCompa
                 R.string.snack_bar_text_group_item_removed,
                 Snackbar.LENGTH_LONG);
 
-        itemsRemoved.add(groupPosition);
+//        itemsRemoved.add(groupPosition);
+        lastDeleted = ExampleExpandableParkingDataProvider.parkingContents.get(groupPosition);
         snackbar.setAction(R.string.snack_bar_action_undo, v -> onItemUndoActionClicked());
         snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.snackbar_action_color_done));
         snackbar.show();
+
+        DatabaseReference mParking = FirebaseDatabase.getInstance().getReference("Parking");
+        DatabaseReference databaseReference = mParking.child(ExampleExpandableParkingDataProvider.parkingContents.get(groupPosition).getKey());
+        ExampleExpandableParkingDataProvider.parkingContents.remove(groupPosition);
+        databaseReference.removeValue();
     }
 
     /**
@@ -141,7 +153,12 @@ public class ExpandableDraggableSwipeableExampleParkingActivity extends AppCompa
 
         if (childPosition == RecyclerView.NO_POSITION) {
             // group item
-            itemsRemoved.remove(groupPosition);
+//            itemsRemoved.remove(groupPosition);
+
+
+            ExampleExpandableParkingDataProvider.parkingContents.add(groupPosition,lastDeleted);
+            DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Parking");
+            mRef.child(lastDeleted.getKey()).setValue(lastDeleted);
             ((ExpandableDraggableSwipeableExampleParkingFragment) fragment).notifyGroupItemRestored(groupPosition);
         } else {
             // child item
@@ -175,14 +192,14 @@ public class ExpandableDraggableSwipeableExampleParkingActivity extends AppCompa
     public void onBackPressed() {
         super.onBackPressed();
 
-        StringBuilder t = new StringBuilder();
-        t.append("ITEMS TO BE DELETED");
-
-        for(int c : itemsRemoved){
-            t.append('\n');
-            t.append(ExampleExpandableParkingDataProvider.parkingContents.get(c).getCarNumber());
-        }
-        Toast.makeText(this,t.toString(), Toast.LENGTH_SHORT).show();
+//        StringBuilder t = new StringBuilder();
+//        t.append("ITEMS TO BE DELETED");
+//
+//        for(int c : itemsRemoved){
+//            t.append('\n');
+//            t.append(ExampleExpandableParkingDataProvider.parkingContents.get(c).getCarNumber());
+//        }
+//        Toast.makeText(this,t.toString(), Toast.LENGTH_SHORT).show();
     }
 
 }

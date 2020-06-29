@@ -6,12 +6,19 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Camera;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.ultrainstinct.android.visapay.Models.Cart;
 import com.ultrainstinct.android.visapay.barcodedetection.BarcodeField;
 import com.ultrainstinct.android.visapay.barcodedetection.BarcodeProcessor;
 import com.ultrainstinct.android.visapay.barcodedetection.BarcodeResultFragment;
@@ -23,6 +30,8 @@ import com.ultrainstinct.android.visapay.settings.SettingsActivity;
 import com.google.android.gms.common.internal.Objects;
 import com.google.android.material.chip.Chip;
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
+import com.ultrainstinct.android.visapay.uploadManualInfo.UploadChangeBarcodeActivity;
+import com.ultrainstinct.android.visapay.uploadScanInfo.UploadScanChangeBarcodeActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,6 +49,8 @@ public class LiveBarcodeScanningActivity extends AppCompatActivity implements Vi
     private AnimatorSet promptChipAnimator;
     private WorkflowModel workflowModel;
     private WorkflowModel.WorkflowState currentWorkflowState;
+    public static int source;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,6 +210,15 @@ public class LiveBarcodeScanningActivity extends AppCompatActivity implements Vi
                         if (barcode != null) {
                             ArrayList<BarcodeField> barcodeFieldList = new ArrayList<>();
                             barcodeFieldList.add(new BarcodeField("Raw Value", barcode.getRawValue()));
+
+                            if(source == 1){
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Cart");
+                                String uploadId = ref.push().getKey();
+                                Cart upload = new Cart(FirebaseAuth.getInstance().getUid(),"Mango",uploadId);
+                                ref.child(uploadId).setValue(upload);
+                                Toast.makeText(getBaseContext(), "Upload successful", Toast.LENGTH_LONG).show();
+                            }
+
                             BarcodeResultFragment.show(LiveBarcodeScanningActivity.this.getSupportFragmentManager(), barcodeFieldList);
                         }
                     }

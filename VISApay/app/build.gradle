@@ -91,6 +91,9 @@ dependencies {
     //Cat Loading
     implementation 'com.roger.catloadinglibrary:catloadinglibrary:1.0.4'
 
+    //Nav Bar
+    compile 'devlight.io:navigationtabbar:1.2.5'
+
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'

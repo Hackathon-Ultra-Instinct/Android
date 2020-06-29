@@ -6,4 +6,51 @@
     android:layout_height="match_parent"
     tools:context=".ShopActivity">
 
+    <Button
+        android:id="@+id/btnReadData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="257dp"
+        android:layout_marginEnd="25dp"
+        android:background="@android:color/holo_purple"
+        android:text="PAY"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!--<Button-->
+        <!--android:id="@+id/btnManualData"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginHorizontal="25dp"-->
+        <!--android:layout_marginStart="25dp"-->
+        <!--android:layout_marginEnd="25dp"-->
+        <!--android:background="@android:color/holo_purple"-->
+        <!--android:text="ENTER DATA MANUALLY"-->
+        <!--android:textColor="@android:color/white"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+
+    <Button
+        android:id="@+id/btnScanData"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginBottom="258dp"
+        android:background="@android:color/holo_purple"
+        android:text="ADD TO CART"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

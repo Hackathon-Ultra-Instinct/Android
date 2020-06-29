@@ -147,6 +147,33 @@
             />
     </LinearLayout>
 
+
+    <LinearLayout
+        android:paddingVertical="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="20dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_CarNumber"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:paddingTop="8dp"
+            android:layout_gravity="center"
+            android:text="Car Number"
+            />
+        <EditText
+            android:id="@+id/et_CarNumber"
+            android:layout_width="0dp"
+            android:layout_gravity="center"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:hint="Enter Car Number"
+            />
+    </LinearLayout>
+
     <Button
         android:id="@+id/submit"
         android:layout_width="match_parent"

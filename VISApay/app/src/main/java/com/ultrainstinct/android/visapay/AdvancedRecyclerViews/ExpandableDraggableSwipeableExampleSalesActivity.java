@@ -10,10 +10,15 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandableItemManager;
 import com.ultrainstinct.android.visapay.Fragments.ExpandableDraggableSwipeableExampleSalesFragment;
+import com.ultrainstinct.android.visapay.Models.Sale;
 import com.ultrainstinct.android.visapay.R;
 import com.ultrainstinct.android.visapay.common.data.AbstractExpandableDataProvider;
+import com.ultrainstinct.android.visapay.common.data.ExampleExpandableDataProvider;
+import com.ultrainstinct.android.visapay.common.data.ExampleExpandableParkingDataProvider;
 import com.ultrainstinct.android.visapay.common.data.ExampleExpandableSalesDataProvider;
 import com.ultrainstinct.android.visapay.common.fragment.ExampleExpandableSalesDataProviderFragment;
 import com.ultrainstinct.android.visapay.common.fragment.ExpandableItemPinnedMessageDialogFragment;
@@ -25,6 +30,7 @@ public class ExpandableDraggableSwipeableExampleSalesActivity extends AppCompatA
     private static final String FRAGMENT_LIST_VIEW = "list view";
     private static final String FRAGMENT_TAG_ITEM_PINNED_DIALOG = "item pinned dialog";
     ArrayList<Integer> itemsRemoved = new ArrayList<Integer>();
+    Sale lastDeleted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +58,18 @@ public class ExpandableDraggableSwipeableExampleSalesActivity extends AppCompatA
                 R.string.snack_bar_text_group_item_removed,
                 Snackbar.LENGTH_LONG);
 
-        itemsRemoved.add(groupPosition);
+
+//        itemsRemoved.add(groupPosition);
+        lastDeleted = ExampleExpandableSalesDataProvider.salesContents.get(groupPosition);
         snackbar.setAction(R.string.snack_bar_action_undo, v -> onItemUndoActionClicked());
         snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.snackbar_action_color_done));
         snackbar.show();
+
+
+        DatabaseReference mSales = FirebaseDatabase.getInstance().getReference("Sale");
+        DatabaseReference databaseReference = mSales.child(ExampleExpandableSalesDataProvider.salesContents.get(groupPosition).getKey());
+        ExampleExpandableSalesDataProvider.salesContents.remove(groupPosition);
+        databaseReference.removeValue();
     }
 
     /**
@@ -139,7 +153,13 @@ public class ExpandableDraggableSwipeableExampleSalesActivity extends AppCompatA
 
         if (childPosition == RecyclerView.NO_POSITION) {
             // group item
-            itemsRemoved.remove(groupPosition);
+//            itemsRemoved.remove(groupPosition);
+
+
+            ExampleExpandableSalesDataProvider.salesContents.add(groupPosition,lastDeleted);
+            DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Sale");
+            mRef.child(lastDeleted.getKey()).setValue(lastDeleted);
+
             ((ExpandableDraggableSwipeableExampleSalesFragment) fragment).notifyGroupItemRestored(groupPosition);
         } else {
             // child item
@@ -173,14 +193,14 @@ public class ExpandableDraggableSwipeableExampleSalesActivity extends AppCompatA
     public void onBackPressed() {
         super.onBackPressed();
 
-        StringBuilder t = new StringBuilder();
-        t.append("ITEMS TO BE DELETED");
-
-        for(int c : itemsRemoved){
-            t.append('\n');
-            t.append(ExampleExpandableSalesDataProvider.salesContents.get(c).getProduct());
-        }
-        Toast.makeText(this,t.toString(), Toast.LENGTH_SHORT).show();
+//        StringBuilder t = new StringBuilder();
+//        t.append("ITEMS TO BE DELETED");
+//
+//        for(int c : itemsRemoved){
+//            t.append('\n');
+//            t.append(ExampleExpandableSalesDataProvider.salesContents.get(c).getProduct());
+//        }
+//        Toast.makeText(this,t.toString(), Toast.LENGTH_SHORT).show();
     }
 
 }

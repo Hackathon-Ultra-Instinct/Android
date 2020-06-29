@@ -10,10 +10,17 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.common.base.Verify;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.h6ah4i.android.widget.advrecyclerview.expandable.RecyclerViewExpandableItemManager;
 import com.ultrainstinct.android.visapay.Fragments.ExpandableDraggableSwipeableExampleVerifyCartFragment;
+import com.ultrainstinct.android.visapay.Models.Cart;
 import com.ultrainstinct.android.visapay.R;
 import com.ultrainstinct.android.visapay.common.data.AbstractExpandableDataProvider;
+import com.ultrainstinct.android.visapay.common.data.ExampleExpandableChangeBarcodeDataProvider;
+import com.ultrainstinct.android.visapay.common.data.ExampleExpandableDataProvider;
+import com.ultrainstinct.android.visapay.common.data.ExampleExpandableSalesDataProvider;
 import com.ultrainstinct.android.visapay.common.data.ExampleExpandableVerifyCartDataProvider;
 import com.ultrainstinct.android.visapay.common.fragment.ExampleExpandableVerifyCartDataProviderFragment;
 import com.ultrainstinct.android.visapay.common.fragment.ExpandableItemPinnedMessageDialogFragment;
@@ -25,6 +32,7 @@ public class ExpandableDraggableSwipeableExampleVerifyCartActivity extends AppCo
     private static final String FRAGMENT_LIST_VIEW = "list view";
     private static final String FRAGMENT_TAG_ITEM_PINNED_DIALOG = "item pinned dialog";
     ArrayList<Integer> itemsRemoved = new ArrayList<Integer>();
+    Cart lastDeleted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +60,17 @@ public class ExpandableDraggableSwipeableExampleVerifyCartActivity extends AppCo
                 R.string.snack_bar_text_group_item_removed,
                 Snackbar.LENGTH_LONG);
 
-        itemsRemoved.add(groupPosition);
+//        itemsRemoved.add(groupPosition);
+        lastDeleted = ExampleExpandableVerifyCartDataProvider.cartContents.get(groupPosition);
         snackbar.setAction(R.string.snack_bar_action_undo, v -> onItemUndoActionClicked());
         snackbar.setActionTextColor(ContextCompat.getColor(this, R.color.snackbar_action_color_done));
         snackbar.show();
+
+
+        DatabaseReference mCart = FirebaseDatabase.getInstance().getReference("Cart");
+        DatabaseReference databaseReference = mCart.child(ExampleExpandableVerifyCartDataProvider.cartContents.get(groupPosition).getKey());
+        ExampleExpandableVerifyCartDataProvider.cartContents.remove(groupPosition);
+        databaseReference.removeValue();
     }
 
     /**
@@ -139,7 +154,13 @@ public class ExpandableDraggableSwipeableExampleVerifyCartActivity extends AppCo
 
         if (childPosition == RecyclerView.NO_POSITION) {
             // group item
-            itemsRemoved.remove(groupPosition);
+//            itemsRemoved.remove(groupPosition);
+
+
+            ExampleExpandableVerifyCartDataProvider.cartContents.add(groupPosition,lastDeleted);
+            DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("Cart");
+            mRef.child(lastDeleted.getKey()).setValue(lastDeleted);
+
             ((ExpandableDraggableSwipeableExampleVerifyCartFragment) fragment).notifyGroupItemRestored(groupPosition);
         } else {
             // child item
@@ -173,14 +194,14 @@ public class ExpandableDraggableSwipeableExampleVerifyCartActivity extends AppCo
     public void onBackPressed() {
         super.onBackPressed();
 
-        StringBuilder t = new StringBuilder();
-        t.append("ITEMS TO BE DELETED");
-
-        for(int c : itemsRemoved){
-            t.append('\n');
-            t.append(ExampleExpandableVerifyCartDataProvider.cartContents.get(c).getUserId());
-        }
-        Toast.makeText(this,t.toString(), Toast.LENGTH_SHORT).show();
+//        StringBuilder t = new StringBuilder();
+//        t.append("ITEMS TO BE DELETED");
+//
+//        for(int c : itemsRemoved){
+//            t.append('\n');
+//            t.append(ExampleExpandableVerifyCartDataProvider.cartContents.get(c).getUserId());
+//        }
+//        Toast.makeText(this,t.toString(), Toast.LENGTH_SHORT).show();
     }
 
 }
