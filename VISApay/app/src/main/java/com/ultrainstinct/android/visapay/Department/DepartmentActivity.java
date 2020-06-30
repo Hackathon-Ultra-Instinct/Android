@@ -1,4 +1,4 @@
-package com.ultrainstinct.android.visapay;
+package com.ultrainstinct.android.visapay.Department;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,23 +19,27 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import com.ultrainstinct.android.visapay.Adapters.MenuAdapter;
-import com.ultrainstinct.android.visapay.Auth.LoginActivity;
-import com.ultrainstinct.android.visapay.Department.DepartmentActivity;
-import com.ultrainstinct.android.visapay.Models.Item;
-import com.ultrainstinct.android.visapay.Products.ProductsActivity;
-import com.ultrainstinct.android.visapay.uploadManualInfo.UploadInfoActivity;
 import com.github.tbouron.shakedetector.library.ShakeDetector;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.ultrainstinct.android.visapay.Adapters.MenuAdapter;
+import com.ultrainstinct.android.visapay.Auth.LoginActivity;
+import com.ultrainstinct.android.visapay.CrowdDetailsActivity;
+import com.ultrainstinct.android.visapay.Models.Item;
+import com.ultrainstinct.android.visapay.Option.OptionChangeBarcodeActivity;
+import com.ultrainstinct.android.visapay.Option.OptionChangeQRcodeActivity;
+import com.ultrainstinct.android.visapay.Option.OptionParkingActivity;
+import com.ultrainstinct.android.visapay.Option.OptionSaleActivity;
+import com.ultrainstinct.android.visapay.R;
+import com.ultrainstinct.android.visapay.VerifyCartActivity;
 import com.yalantis.guillotine.animation.GuillotineAnimation;
 
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MenuscreenActivity extends AppCompatActivity implements View.OnClickListener, MenuAdapter.ItemListener, ShakeDetector.OnShakeListener {
+public class DepartmentActivity extends AppCompatActivity implements View.OnClickListener, MenuAdapter.ItemListener, ShakeDetector.OnShakeListener {
 
     private static final long RIPPLE_DURATION = 250;
     Button tvSwitch;
@@ -61,20 +65,18 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menuscreen);
+        setContentView(R.layout.activity_department);
+
 
         mAuth = FirebaseAuth.getInstance();
         mCurrentUser = mAuth.getCurrentUser();
         firebaseAuth = FirebaseAuth.getInstance();
-
-        Toast.makeText(this, "Welcome User", Toast.LENGTH_SHORT).show();
 
 //        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Login History");
         firebaseUser = firebaseAuth.getCurrentUser();
         checkReadPermissionPermission();
         checkInternetPermission();
         checkPhonePermission();
-        checkCameraPermssion();
         checkVibratePermission();
 
 
@@ -99,18 +101,11 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
         mAuth = FirebaseAuth.getInstance();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         arrayList = new ArrayList<>();
-        arrayList.add(new Item(getString(R.string.enableSession), R.drawable.qr_code, "#ffffff"));
-        arrayList.add(new Item(getString(R.string.parking), R.drawable.parking, "#ffffff"));
-        arrayList.add(new Item(getString(R.string.wallet), R.drawable.wallet, "#ffffff"));
-        arrayList.add(new Item(getString(R.string.merchants), R.drawable.nearby_merchants, "#ffffff"));
-        arrayList.add(new Item(getString(R.string.input), R.drawable.form, "#ffffff"));
-        arrayList.add(new Item(getString(R.string.numberplate),R.drawable.number,"#ffffff"));
-        arrayList.add(new Item(getString(R.string.shop),R.drawable.shopping,"#ffffff"));
-        arrayList.add(new Item(getString(R.string.transaction),R.drawable.transaction_history,"#ffffff"));
-        arrayList.add(new Item(getString(R.string.products),R.drawable.product,"#ffffff"));
-        arrayList.add(new Item(getString(R.string.departments),R.drawable.deparment,"#ffffff"));
-
-
+        arrayList.add(new Item(getString(R.string.groceries), R.drawable.groceries, "#ffffff"));
+        arrayList.add(new Item(getString(R.string.electronics), R.drawable.electronics, "#ffffff"));
+        arrayList.add(new Item(getString(R.string.men_clothing), R.drawable.men_clothing, "#ffffff"));
+        arrayList.add(new Item(getString(R.string.women_clothing), R.drawable.women_clothing, "#ffffff"));
+        arrayList.add(new Item(getString(R.string.accessories), R.drawable.accessories, "#ffffff"));
 
         MenuAdapter menuAdapter = new MenuAdapter(this, arrayList, this);
         recyclerView.setAdapter(menuAdapter);
@@ -118,7 +113,7 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
         recyclerView.setLayoutManager(manager);
         if (toolbar != null) {
             setSupportActionBar(toolbar);
-            getSupportActionBar().setTitle("VISA Pay");
+            getSupportActionBar().setTitle("Departments");
         }
 
 
@@ -126,22 +121,24 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
         toolbar = findViewById(R.id.toolbar);
         contentHamburger = findViewById(R.id.content_hamburger);
 
-        View guillotineMenu = LayoutInflater.from(this).inflate(R.layout.guillotine, null);
+        View guillotineMenu = LayoutInflater.from(this).inflate(R.layout.guillotine2, null);
         root.addView(guillotineMenu);
 
 
-        new GuillotineAnimation.GuillotineBuilder(guillotineMenu, guillotineMenu.findViewById(R.id.guillotine_hamburger), contentHamburger)
+        new GuillotineAnimation.GuillotineBuilder(guillotineMenu, guillotineMenu.findViewById(R.id.guillotine_hamburger2), contentHamburger)
                 .setStartDelay(RIPPLE_DURATION)
                 .setActionBarViewForAnimation(toolbar)
                 .setClosedOnStart(true)
                 .build();
 
-        View v = LayoutInflater.from(this).inflate(R.layout.guillotine, null);
+        View v = LayoutInflater.from(this).inflate(R.layout.guillotine2, null);
 
         tvSwitch = v.findViewById(R.id.tvSwitch);
         tvpaytm = v.findViewById(R.id.tvpaytm);
         tvhosp = v.findViewById(R.id.tvhosp);
         tvsignout = v.findViewById(R.id.tvsignout);
+        
+        tvsignout.setText("Log Out from all sessions");
 
         tvSwitch.setOnClickListener(this);
         tvpaytm.setOnClickListener(this);
@@ -157,13 +154,6 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
 //        mDatabaseRef.child(uploadId).setValue(upload);
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent a = new Intent(Intent.ACTION_MAIN);
-        a.addCategory(Intent.CATEGORY_HOME);
-        a.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(a);
-    }
 
     public static int getString() {
 //        if (str >= Strings.length) str = 0;
@@ -171,9 +161,45 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
         return 0;
     }
 
+    public static int getImageResource() {
+//        if (imageResourceIndex >= imageResources.length) imageResourceIndex = 0;
+//        return imageResources[imageResourceIndex++];
+        return 0;
+    }
+
     public void start(int pos) {
         //Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
 //        Intent in = new Intent(this, MainActivity.class);
+//        startActivity(in);
+    }
+
+    public void stock(int pos) {
+        // Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
+//        Intent in = new Intent( this, ChatActivity.class);
+//        startActivity(in);
+    }
+
+    public void sales(int pos) {
+        //Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
+//        Intent in = new Intent( this, Spacewar.class);
+//        startActivity(in);
+    }
+
+    public void buy(int pos) {
+        // Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
+//        Intent in = new Intent( this, MemeActivity.class);
+//        startActivity(in);
+    }
+
+    public void anonymous(int pos) {
+        // Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
+//        Intent in = new Intent(this, AnonymousChat.class);
+//        startActivity(in);
+    }
+
+    public void ordering(int pos) {
+        //Toast.makeText(this, Integer.toString(pos), Toast.LENGTH_LONG).show();
+//        Intent in = new Intent( this, MusicActivity.class);
 //        startActivity(in);
     }
 
@@ -187,7 +213,8 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
             case R.id.tvsignout: {
 //                mAuth.signOut();
 //                startActivity(new Intent(getBaseContext(),LoginActivity.class));
-                login(null);
+//                login(null);
+                Toast.makeText(this, "You have been logged out from all sessions", Toast.LENGTH_SHORT).show();
                 break;
             }
         }
@@ -227,27 +254,16 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
     @Override
     public void onItemClick(Item item) {
 
-        if (item.getText().equals("Enable / Disable Session"))
-            startActivity(new Intent(getBaseContext(), QRCodeActivity.class));
-        else if (item.getText().equals("Parking Details"))
-            startActivity(new Intent(getBaseContext(), ParkingActivity.class));
-        else if (item.getText().equals("Your Wallet"))
-            startActivity(new Intent(getBaseContext(), WalletActivity.class));
-        else if (item.getText().equals("Nearby Merchants"))
-            startActivity(new Intent(getBaseContext(), NearbyMerchantsActivity.class));
-        else if (item.getText().equals("Fill Your Info"))
-            startActivity(new Intent(getBaseContext(), UploadInfoActivity.class));
-        else if (item.getText().equals("Scan Number Plate"))
-            startActivity(new Intent(getBaseContext(), NumberPlateActivity.class));
-        else if (item.getText().equals("Shop"))
-            startActivity(new Intent(getBaseContext(), ShopActivity.class));
-        else if (item.getText().equals("Transaction History"))
-            startActivity(new Intent(getBaseContext(), TransactionHistoryActivity.class));
-        else if(item.getText().equals("Products"))
-            startActivity(new Intent(getBaseContext(), ProductsActivity.class));
-        else if(item.getText().equals("Departments"))
-            startActivity(new Intent(getBaseContext(), DepartmentActivity.class));
-
+        if (item.getText().equals("Groceries"))
+            startActivity(new Intent(getBaseContext(), GroceriesActivity.class));
+        else if (item.getText().equals("Electronics"))
+            startActivity(new Intent(getBaseContext(), ElectronicsActivity.class));
+        else if (item.getText().equals("Men Clothing"))
+            startActivity(new Intent(getBaseContext(), MenClothingActivity.class));
+        else if (item.getText().equals("Women Clothing"))
+            startActivity(new Intent(getBaseContext(), WomenClothingActivity.class));
+        else if (item.getText().equals("Accessories"))
+            startActivity(new Intent(getBaseContext(), AccessoriesActivity.class));
     }
 
     @Override
@@ -303,17 +319,6 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
             return true;
     }
 
-    public boolean checkCameraPermssion() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 125);
-            }
-            return false;
-
-        } else
-            return true;
-    }
 
     public boolean checkVibratePermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.VIBRATE) != PackageManager.PERMISSION_GRANTED) {

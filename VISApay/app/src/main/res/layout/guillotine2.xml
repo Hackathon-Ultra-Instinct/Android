@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/guillotine_background"
+    android:backgroundTint="@color/white"
+    android:orientation="vertical"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        style="@style/Toolbar"
+        android:background="@color/colorPrimary"
+        app:contentInsetStart="0dp"
+        >
+
+        <ImageView
+            android:id="@+id/guillotine_hamburger2"
+            style="@style/ImageView.Hamburger"
+            android:src="@drawable/ic_menu" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="Departments"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <LinearLayout
+        android:id="@+id/profile_group"
+        style="@style/LinearLayout.GuillotineItem"
+        android:layout_marginTop="@dimen/guillotine_medium_margin">
+
+        <ImageView
+            style="@style/ImageView.GuillotineItem"
+            android:src="@drawable/anonymous"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/tvSwitch"
+            style="@style/TextView.GuillotineItem"
+            android:onClick="anonymousChat"
+            android:text="Switch to Hindi"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/settings_group"-->
+    <!--style="@style/LinearLayout.GuillotineItem">-->
+
+    <!--<ImageView-->
+    <!--style="@style/ImageView.GuillotineItem"-->
+    <!--android:src="@drawable/ic_om" />-->
+
+    <!--<Button-->
+    <!--android:id="@+id/change_lang"-->
+    <!--style="@style/TextView.GuillotineItem"-->
+    <!--android:text="Change Language" />-->
+    <!--</LinearLayout>-->
+
+    <LinearLayout
+        android:id="@+id/feed_group"
+        style="@style/LinearLayout.GuillotineItem">
+
+        <ImageView
+            style="@style/ImageView.GuillotineItem"
+            android:src="@drawable/hospital"
+            android:visibility="gone"
+            />
+
+        <Button
+            android:id="@+id/tvhosp"
+            style="@style/TextView.GuillotineItem"
+            android:onClick="hosp"
+            android:text="Shake to Call"
+            android:visibility="gone"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/paytm_group"
+        style="@style/LinearLayout.GuillotineItem"
+        android:visibility="gone">
+
+        <ImageView
+            style="@style/ImageView.GuillotineItem"
+            android:src="@drawable/money" />
+
+        <Button
+            android:id="@+id/tvpaytm"
+            style="@style/TextView.GuillotineItem"
+            android:onClick="paytm"
+            android:text="Paytm Karo" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/activity_group"
+        style="@style/LinearLayout.GuillotineItem">
+
+        <ImageView
+            style="@style/ImageView.GuillotineItem"
+            android:src="@drawable/ic_logout" />
+
+        <Button
+            android:id="@+id/tvsignout"
+            style="@style/TextView.GuillotineItem"
+            android:onClick="login"
+            android:text="Destroy all sessions" />
+    </LinearLayout>
+
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/guillotine_divider_height" />-->
+
+
+</LinearLayout>

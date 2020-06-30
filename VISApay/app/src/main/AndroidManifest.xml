@@ -19,7 +19,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Products.ProductsActivity"></activity>
+        <activity android:name=".Department.ElectronicsActivity"></activity>
+        <activity android:name=".Department.AccessoriesActivity" />
+        <activity android:name=".Department.WomenClothingActivity" />
+        <activity android:name=".Department.MenClothingActivity" />
+        <activity android:name=".Department.GroceriesActivity" />
+        <activity android:name=".Department.DepartmentActivity" />
+        <activity android:name=".Products.ProductsActivity" />
         <activity android:name=".uploadScanInfo.UploadScanShopActivity" />
         <activity android:name=".BaseActivity" />
         <activity android:name=".TextActivity" />
