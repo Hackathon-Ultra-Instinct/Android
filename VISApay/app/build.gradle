@@ -55,6 +55,7 @@ dependencies {
     implementation 'com.android.volley:volley:1.1.1'
 
     implementation 'com.google.firebase:firebase-ml-vision:24.0.2'
+    implementation 'com.sdsmdg.harjot:rotatingtext:1.0.1'
 
     implementation 'com.github.Yalantis:GuillotineMenu-Android:1.2'
     implementation 'com.nightonke:boommenu:2.0.6'
@@ -92,8 +93,10 @@ dependencies {
     implementation 'com.roger.catloadinglibrary:catloadinglibrary:1.0.4'
 
     //Nav Bar
-    compile 'devlight.io:navigationtabbar:1.2.5'
+    implementation 'devlight.io:navigationtabbar:1.2.5'
 
+    //Change Text
+    implementation 'com.robinhood.ticker:ticker:2.0.2'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'

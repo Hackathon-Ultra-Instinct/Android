@@ -183,6 +183,12 @@
     <string name="action_gallery">Gallery</string>
     <string name="action_camera">Camera</string>
     <string name="products">Products</string>
+    <string name="departments">Departments</string>
+    <string name="groceries">Groceries</string>
+    <string name="electronics">Electronics</string>
+    <string name="men_clothing">Men Clothing</string>
+    <string name="women_clothing">Women Clothing</string>
+    <string name="accessories">Accessories</string>
 
 
 </resources>
