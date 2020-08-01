@@ -100,12 +100,13 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         arrayList = new ArrayList<>();
 
+//        arrayList.add(new Item(getString(R.string.start), R.drawable.start, "#ffffff"));
         arrayList.add(new Item(getString(R.string.enableSession), R.drawable.qr_code, "#ffffff"));
         arrayList.add(new Item(getString(R.string.parking), R.drawable.parking, "#ffffff"));
         arrayList.add(new Item(getString(R.string.wallet), R.drawable.wallet, "#ffffff"));
         arrayList.add(new Item(getString(R.string.merchants), R.drawable.nearby_merchants, "#ffffff"));
         arrayList.add(new Item(getString(R.string.input), R.drawable.form, "#ffffff"));
-        arrayList.add(new Item(getString(R.string.numberplate),R.drawable.number,"#ffffff"));
+//        arrayList.add(new Item(getString(R.string.numberplate),R.drawable.number,"#ffffff"));
         arrayList.add(new Item(getString(R.string.shop),R.drawable.shopping,"#ffffff"));
         arrayList.add(new Item(getString(R.string.transaction),R.drawable.transaction_history,"#ffffff"));
         arrayList.add(new Item(getString(R.string.products),R.drawable.product,"#ffffff"));
