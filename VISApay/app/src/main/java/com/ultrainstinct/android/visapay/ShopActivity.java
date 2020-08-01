@@ -13,7 +13,7 @@ import com.ultrainstinct.android.visapay.uploadScanInfo.UploadScanShopActivity;
 
 public class ShopActivity extends AppCompatActivity {
 
-    Button btnReadData,btnManualData,btnScanData;
+    Button btnReadData,btnScanData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +34,7 @@ public class ShopActivity extends AppCompatActivity {
         btnReadData.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getBaseContext(), DummyActivity.class));
+                startActivity(new Intent(getBaseContext(), ViewCartActivity.class));
             }
         });
 

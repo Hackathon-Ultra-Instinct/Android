@@ -6,7 +6,7 @@
     <color name="bg_bubble_self">#62caa6</color>
     <color name="bg_bubble_watbot">#ecf0f1</color>
 
-    <color name="primary">#673AB7</color>
+    <color name="primary">#f9d691</color>
     <color name="primary_dark">#159c45</color>
     <color name="primary_darker">#19783b</color>
     <color name="accent">#FFFFFF</color>
@@ -123,6 +123,5 @@
     <color name="lightred">#FFF27464</color>
 
     <color name="snackbar_action_color_done">#ffccccff</color>
-
     <color name="expandable_item_indicator_color">#42000000</color>
 </resources>

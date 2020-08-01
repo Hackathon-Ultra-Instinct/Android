@@ -28,9 +28,6 @@ public class ProductsActivity extends Activity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products);
-
-
-
         initUI();
     }
 
@@ -129,7 +126,7 @@ public class ProductsActivity extends Activity {
         navigationTabBar.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(final int position, final float positionOffset, final int positionOffsetPixels) {
-                Toast.makeText(getBaseContext(), "PAGE : " + position, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getBaseContext(), "PAGE : " + position, Toast.LENGTH_SHORT).show();
 
                 if(position == 0){
                     tv1.setText("Strawberry");

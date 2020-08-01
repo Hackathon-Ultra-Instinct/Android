@@ -10,33 +10,31 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class NearbyMerchantsActivity extends AppCompatActivity {
+public class PayActivity extends AppCompatActivity {
 
     private WebView chatWindow;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_nearby_merchants);
+        setContentView(R.layout.activity_pay);
         chatWindow = findViewById(R.id.chatWindow);
 
         WebSettings webSettings = chatWindow.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        WebViewClientImpl webViewClient = new WebViewClientImpl(NearbyMerchantsActivity.this);
+        WebViewClientImpl webViewClient = new WebViewClientImpl(PayActivity.this);
         chatWindow.setWebViewClient(webViewClient);
-        chatWindow.loadUrl("https://www.google.com/maps/search/nearby+merchants+accepting+visa+card/@28.6540595,77.1873551,12z  ");
-
+        chatWindow.loadUrl("https://visapay.herokuapp.com/pay/-MAb7bUTF5gTxzpalF31");
     }
     public class WebViewClientImpl extends WebViewClient {
         private Activity activity = null;
 
-        public WebViewClientImpl(NearbyMerchantsActivity activity) {
+        public WebViewClientImpl(PayActivity activity) {
             this.activity = activity;
         }
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView webView, String url) {
-            if (url.indexOf("https://www.google.com/maps/search/nearby+merchants+accepting+visa+card/@28.6540595,77.1873551,12z") > -1) return false;
+            if (url.indexOf("https://visapay.herokuapp.com/pay/-MAb7bUTF5gTxzpalF31") > -1) return false;
 
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             activity.startActivity(intent);

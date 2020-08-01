@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Camera;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -72,6 +73,34 @@ public class LiveBarcodeScanningActivity extends AppCompatActivity implements Vi
         flashButton.setOnClickListener(this);
         settingsButton = findViewById(R.id.settings_button);
         settingsButton.setOnClickListener(this);
+
+        if(source == 2){
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    String s = "Hide & seek";
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Cart");
+                    String uploadId = ref.push().getKey();
+                    Cart upload = new Cart(FirebaseAuth.getInstance().getUid(),s,uploadId);
+                    ref.child(uploadId).setValue(upload);
+                    Toast.makeText(LiveBarcodeScanningActivity.this, s, Toast.LENGTH_LONG).show();
+                }
+            },5000);
+        }
+
+        if(source == 3){
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    String s = "Yippee noodles";
+                    DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Cart");
+                    String uploadId = ref.push().getKey();
+                    Cart upload = new Cart(FirebaseAuth.getInstance().getUid(),s,uploadId);
+                    ref.child(uploadId).setValue(upload);
+                    Toast.makeText(LiveBarcodeScanningActivity.this, s, Toast.LENGTH_LONG).show();
+                }
+            },5000);
+        }
 
         setUpWorkflowModel();
     }
@@ -172,7 +201,10 @@ public class LiveBarcodeScanningActivity extends AppCompatActivity implements Vi
                     switch (workflowState) {
                         case DETECTING:
                             promptChip.setVisibility(View.VISIBLE);
-                            promptChip.setText(R.string.prompt_point_at_a_barcode);
+                            if(source != 2)
+                                promptChip.setText(R.string.prompt_point_at_a_barcode);
+                            else
+                                promptChip.setText(R.string.prompt_point_at_an_object);
                             startCameraPreview();
                             break;
                         case CONFIRMING:
@@ -211,13 +243,29 @@ public class LiveBarcodeScanningActivity extends AppCompatActivity implements Vi
                             ArrayList<BarcodeField> barcodeFieldList = new ArrayList<>();
                             barcodeFieldList.add(new BarcodeField("Raw Value", barcode.getRawValue()));
 
+
                             if(source == 1){
+
+                                String s = "Mango";
+
+                                if(barcode.getRawValue().toString().equals("8901725181222")){
+                                    s = "Yippee noodles";
+                                    Toast.makeText(LiveBarcodeScanningActivity.this, s , Toast.LENGTH_SHORT).show();
+                                }
+                                else if(barcode.getRawValue().toString().equals("8901719105913")){
+                                    s = "Hide & seek";
+                                    Toast.makeText(LiveBarcodeScanningActivity.this, s, Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(getBaseContext(), "Upload successful", Toast.LENGTH_LONG).show();
+                                }
+
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Cart");
                                 String uploadId = ref.push().getKey();
-                                Cart upload = new Cart(FirebaseAuth.getInstance().getUid(),"Mango",uploadId);
+                                Cart upload = new Cart(FirebaseAuth.getInstance().getUid(),s,uploadId);
                                 ref.child(uploadId).setValue(upload);
-                                Toast.makeText(getBaseContext(), "Upload successful", Toast.LENGTH_LONG).show();
                             }
+
 
                             BarcodeResultFragment.show(LiveBarcodeScanningActivity.this.getSupportFragmentManager(), barcodeFieldList);
                         }

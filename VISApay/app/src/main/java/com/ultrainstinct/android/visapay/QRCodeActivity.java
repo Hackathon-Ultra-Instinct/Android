@@ -81,7 +81,6 @@ public class QRCodeActivity extends AppCompatActivity implements EasyPermissions
     public void cameraTask() {
         if (hasCameraPermission()) {
             // Have permission, do the thing!
-//            Toast.makeText(this, "TODO: Camera things", Toast.LENGTH_LONG).show();
         } else {
             // Ask for one permission
             EasyPermissions.requestPermissions(
@@ -96,7 +95,6 @@ public class QRCodeActivity extends AppCompatActivity implements EasyPermissions
     public void externalStorageTask() {
         if (hasCameraPermission()) {
             // Have permission, do the thing!
-            Toast.makeText(this, "TODO: Camera things", Toast.LENGTH_LONG).show();
         } else {
             // Ask for one permission
             EasyPermissions.requestPermissions(

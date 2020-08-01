@@ -99,6 +99,7 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
         mAuth = FirebaseAuth.getInstance();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         arrayList = new ArrayList<>();
+
         arrayList.add(new Item(getString(R.string.enableSession), R.drawable.qr_code, "#ffffff"));
         arrayList.add(new Item(getString(R.string.parking), R.drawable.parking, "#ffffff"));
         arrayList.add(new Item(getString(R.string.wallet), R.drawable.wallet, "#ffffff"));

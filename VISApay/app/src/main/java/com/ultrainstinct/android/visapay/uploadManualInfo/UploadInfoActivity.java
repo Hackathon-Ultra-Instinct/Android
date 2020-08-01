@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.ultrainstinct.android.visapay.GetActiveDetailsActivity;
 import com.ultrainstinct.android.visapay.MenuscreenActivity;
 import com.ultrainstinct.android.visapay.Models.General;
 import com.ultrainstinct.android.visapay.Models.UploadInfo;
@@ -86,7 +87,7 @@ public class UploadInfoActivity extends AppCompatActivity {
         pd.dismiss();
         Toast.makeText(getBaseContext(), "Upload successful", Toast.LENGTH_LONG).show();
         finish();
-        startActivity(new Intent(getBaseContext(), MenuscreenActivity.class));
+        startActivity(new Intent(getBaseContext(), GetActiveDetailsActivity.class));
 
     }
 }
