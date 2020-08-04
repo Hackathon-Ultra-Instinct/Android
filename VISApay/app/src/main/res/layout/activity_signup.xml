@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
-    android:background="#FF9A73"
+    android:background="@drawable/backgr"
     >
 
     <LinearLayout
@@ -17,7 +17,6 @@
 
         <TextView
             android:textStyle="italic"
-            android:textColor="#fff"
             android:text="Sign Up"
             android:fontFamily="cursive"
             android:textSize="40sp"
@@ -26,18 +25,6 @@
             android:layout_marginBottom="24dp"
             android:layout_gravity="center_horizontal" />
 
-        <!--  Name Label -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapWords"
-                android:hint="Name" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Email Label -->
         <com.google.android.material.textfield.TextInputLayout
@@ -75,7 +62,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="Admin" />
+                android:text="Admin"
+                />
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/adminSwitch"
                 android:layout_width="wrap_content"
@@ -86,7 +74,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="User" />
+                android:text="User"
+                />
 
         </LinearLayout>
         <!-- Signup Button -->

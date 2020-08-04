@@ -121,7 +121,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
             android:layout_weight="2"
-            android:text="Hide n Seek biscuits"
+            android:text="Bourbon"
             android:textSize="15sp"
             android:textStyle="bold" />
 

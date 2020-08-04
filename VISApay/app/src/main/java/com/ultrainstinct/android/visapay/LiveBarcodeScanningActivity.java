@@ -78,7 +78,7 @@ public class LiveBarcodeScanningActivity extends AppCompatActivity implements Vi
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    String s = "Hide & seek";
+                    String s = "Bourbon";
                     DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Cart");
                     String uploadId = ref.push().getKey();
                     Cart upload = new Cart(FirebaseAuth.getInstance().getUid(),s,uploadId);
@@ -246,14 +246,14 @@ public class LiveBarcodeScanningActivity extends AppCompatActivity implements Vi
 
                             if(source == 1){
 
-                                String s = "Mango";
+                                String s = "Random Product";
 
                                 if(barcode.getRawValue().toString().equals("8901725181222")){
                                     s = "Yippee noodles";
                                     Toast.makeText(LiveBarcodeScanningActivity.this, s , Toast.LENGTH_SHORT).show();
                                 }
-                                else if(barcode.getRawValue().toString().equals("8901719105913")){
-                                    s = "Hide & seek";
+                                else if(barcode.getRawValue().toString().equals("8901063139213")){
+                                    s = "Bourbon";
                                     Toast.makeText(LiveBarcodeScanningActivity.this, s, Toast.LENGTH_SHORT).show();
                                 }
                                 else{

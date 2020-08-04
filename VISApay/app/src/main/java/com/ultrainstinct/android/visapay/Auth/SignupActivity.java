@@ -33,7 +33,6 @@ public class SignupActivity extends AppCompatActivity {
 
     public int  switchNumber = 0;
 
-    EditText _nameText;
     EditText _emailText;
     EditText _passwordText;
     Button _signupButton;
@@ -44,7 +43,6 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        _nameText = findViewById(R.id.input_name);
         _emailText = findViewById(R.id.input_email);
         adminSwitch = findViewById(R.id.adminSwitch);
         _passwordText = findViewById(R.id.input_password);
@@ -109,7 +107,6 @@ public class SignupActivity extends AppCompatActivity {
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
 
-        String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
@@ -159,16 +156,9 @@ public class SignupActivity extends AppCompatActivity {
     public boolean validate() {
         boolean valid = true;
 
-        String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        if (name.isEmpty() || name.length() < 3) {
-            _nameText.setError("at least 3 characters");
-            valid = false;
-        } else {
-            _nameText.setError(null);
-        }
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _emailText.setError("enter a valid email address");

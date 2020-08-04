@@ -18,6 +18,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.ultrainstinct.android.visapay.GetActiveDetailsActivity;
 import com.ultrainstinct.android.visapay.MenuscreenActivity;
 import com.ultrainstinct.android.visapay.MenuscreenActivity2;
 import com.ultrainstinct.android.visapay.R;
@@ -123,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void updateUI(FirebaseUser currentUser){
         if(switchNumber == 1)
-            startActivity(new Intent(getBaseContext(),MenuscreenActivity.class));
+            startActivity(new Intent(getBaseContext(), GetActiveDetailsActivity.class));
         else
             startActivity(new Intent(getBaseContext(), MenuscreenActivity2.class));
 
