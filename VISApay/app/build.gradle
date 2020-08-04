@@ -69,7 +69,10 @@ dependencies {
     implementation 'com.jpardogo.materialtabstrip:library:1.1.0'
     implementation 'com.jakewharton:butterknife:10.0.0'
     implementation 'com.google.firebase:firebase-database:19.3.1'
+    implementation 'com.google.android.gms:play-services-vision:11.0.4'
+
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
+
 
     implementation 'com.google.firebase:firebase-core:17.4.3'
     implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.16'

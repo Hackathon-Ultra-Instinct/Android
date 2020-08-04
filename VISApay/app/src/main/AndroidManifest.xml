@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GetActiveDetailsActivity"></activity>
+        <activity android:name=".NumberPlateScanningActivity"></activity>
+        <activity android:name=".GetActiveDetailsActivity" />
         <activity android:name=".PayActivity" />
         <activity android:name=".ViewCartActivity" />
         <activity android:name=".Department.ElectronicsActivity" />

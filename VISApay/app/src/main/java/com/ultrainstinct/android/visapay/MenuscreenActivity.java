@@ -106,7 +106,6 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
         arrayList.add(new Item(getString(R.string.wallet), R.drawable.wallet, "#ffffff"));
         arrayList.add(new Item(getString(R.string.merchants), R.drawable.nearby_merchants, "#ffffff"));
         arrayList.add(new Item(getString(R.string.input), R.drawable.form, "#ffffff"));
-//        arrayList.add(new Item(getString(R.string.numberplate),R.drawable.number,"#ffffff"));
         arrayList.add(new Item(getString(R.string.shop),R.drawable.shopping,"#ffffff"));
         arrayList.add(new Item(getString(R.string.transaction),R.drawable.transaction_history,"#ffffff"));
         arrayList.add(new Item(getString(R.string.products),R.drawable.product,"#ffffff"));
@@ -239,8 +238,8 @@ public class MenuscreenActivity extends AppCompatActivity implements View.OnClic
             startActivity(new Intent(getBaseContext(), NearbyMerchantsActivity.class));
         else if (item.getText().equals("Fill Your Info"))
             startActivity(new Intent(getBaseContext(), UploadInfoActivity.class));
-        else if (item.getText().equals("Scan Number Plate"))
-            startActivity(new Intent(getBaseContext(), NumberPlateActivity.class));
+//        else if (item.getText().equals("Scan Number Plate"))
+//            startActivity(new Intent(getBaseContext(), NumberPlateActivity.class));
         else if (item.getText().equals("Shop"))
             startActivity(new Intent(getBaseContext(), ShopActivity.class));
         else if (item.getText().equals("Transaction History"))

@@ -156,6 +156,8 @@
     <string name="wallet">Your Wallet</string>
     <string name="merchants">Nearby Merchants</string>
     <string name="numberplate">Scan Number Plate</string>
+    <string name="txt_message">No Text Available</string>
+    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
     <string name="shop">Shop</string>
     <string name="transaction">Transaction History</string>
     <string name="crowdDetails">Crowd Details</string>

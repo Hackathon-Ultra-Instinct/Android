@@ -108,6 +108,7 @@ public class MenuscreenActivity2 extends AppCompatActivity implements View.OnCli
         arrayList.add(new Item(getString(R.string.changeB), R.drawable.barcode, "#ffffff"));
         arrayList.add(new Item(getString(R.string.changeQ), R.drawable.qr_code, "#ffffff"));
         arrayList.add(new Item(getString(R.string.parking2), R.drawable.parking, "#ffffff"));
+        arrayList.add(new Item(getString(R.string.numberplate),R.drawable.number,"#ffffff"));
 
 
         MenuAdapter menuAdapter = new MenuAdapter(this, arrayList, this);
@@ -273,6 +274,8 @@ public class MenuscreenActivity2 extends AppCompatActivity implements View.OnCli
             startActivity(new Intent(getBaseContext(), OptionChangeQRcodeActivity.class));
          else if (item.getText().equals("Parking"))
              startActivity(new Intent(getBaseContext(), OptionParkingActivity.class));
+         else if(item.getText().equals("Scan Number Plate"))
+             startActivity(new Intent(getBaseContext(), NumberPlateScanningActivity.class));
 
     }
 
